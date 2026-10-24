@@ -1,10 +1,15 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>AAE 412 Study Lab</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+html{box-sizing:border-box}body{margin:0}[hidden]{display:none!important}img{max-width:100%}
 /* Layout: drafting-sheet study desk. Title-block header with view tabs; the work sheet on the left; a topic ledger (filter + mastery) on the right. Stacks on phones. Same palette and type as the Orbit Angle Lab. */
 :root{
   --bg:#e9edf1; --panel:#f6f7f9; --ink:#17202c; --ink-2:#465264; --muted:#667183; --rule:#d0d6de; --field:#ffffff;
@@ -31,6 +36,8 @@ button,input,select{font:inherit;color:inherit}
 a{color:var(--accent)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 mjx-container{color:var(--ink)}
+mjx-container[jax="SVG"]{overflow:visible}
+.dsec p,.eq dd,.steps,.disp{overflow-y:hidden}
 
 /* header = title block */
 .bar{display:flex;flex-wrap:wrap;align-items:stretch;gap:0 28px;background:var(--panel);border-bottom:1px solid var(--rule);
@@ -72,13 +79,13 @@ main{min-width:0;display:flex;flex-direction:column;gap:16px}
 .card{background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:22px 22px 20px;display:flex;flex-direction:column;gap:16px;min-width:0}
 .meta{display:flex;flex-wrap:wrap;gap:6px 14px;font:500 12px/1.3 var(--f-mono);color:var(--muted);letter-spacing:.02em}
 .meta .mr{color:var(--mr)}
-.qtext{font-size:18.5px;line-height:1.5;max-width:68ch;overflow-x:auto}
+.qtext{font-size:18.5px;line-height:1.5;max-width:68ch;overflow-x:auto;overflow-y:hidden}
 .choices{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
 .choice{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start;text-align:left;width:100%;background:var(--field);
   border:1px solid var(--rule);border-radius:5px;padding:11px 13px;cursor:pointer;font-size:16px;line-height:1.45}
 .choice:hover:not([disabled]){border-color:var(--accent)}
 .choice .k{font:500 13px/1.6 var(--f-mono);color:var(--muted);border:1px solid var(--rule);border-radius:3px;text-align:center}
-.choice .t{min-width:0;overflow-x:auto}
+.choice .t{min-width:0;overflow-x:auto;overflow-y:hidden}
 .choice[disabled]{cursor:default}
 .choice.right{background:var(--ok-bg);border-color:var(--ok-fg);color:var(--ok-fg)}
 .choice.wrong{background:var(--bad-bg);border-color:var(--bad-fg);color:var(--bad-fg)}
@@ -87,7 +94,7 @@ main{min-width:0;display:flex;flex-direction:column;gap:16px}
 .fb.ok{border-color:var(--ok-fg)} .fb.bad{border-color:var(--bad-fg)}
 .fb .verdict{font:700 15px/1.2 var(--f-display);letter-spacing:.08em;text-transform:uppercase}
 .fb.ok .verdict{color:var(--ok-fg)} .fb.bad .verdict{color:var(--bad-fg)}
-.fb .ex{margin:0;color:var(--ink);max-width:68ch;overflow-x:auto}
+.fb .ex{margin:0;color:var(--ink);max-width:68ch;overflow-x:auto;overflow-y:hidden}
 .src{font:400 12px/1.4 var(--f-mono);color:var(--muted)}
 .foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
 .empty{color:var(--ink-2);padding:8px 0}
@@ -158,6 +165,30 @@ details.rev .body{padding:0 14px 14px;display:flex;flex-direction:column;gap:8px
 .terms span{white-space:nowrap}
 .eq .lab{font:600 13px/1 var(--f-display);letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
 
+/* flags and deeper explanations */
+.tools{display:flex;flex-wrap:wrap;gap:8px}
+.tbtn{background:transparent;border:1px solid var(--rule);border-radius:4px;padding:7px 11px;cursor:pointer;font:600 13px/1 var(--f-display);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);display:inline-flex;gap:7px;align-items:center}
+.tbtn:hover{border-color:var(--ink-2);color:var(--ink)}
+.tbtn[aria-pressed="true"]{border-color:var(--mr);color:var(--mr)}
+.tbtn[aria-expanded="true"]{border-color:var(--accent);color:var(--accent)}
+.tbtn svg{width:13px;height:13px;flex:none}
+.deep{border:1px solid var(--rule);border-radius:5px;background:var(--field);padding:14px 16px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.dsec{display:flex;flex-direction:column;gap:6px;min-width:0}
+.dsec p{margin:0;max-width:68ch;overflow-x:auto}
+.mini{border-top:1px dashed var(--rule);padding-top:8px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.mini:first-of-type{border-top:0;padding-top:0}
+.mini-h{display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:space-between;align-items:baseline}
+.mini-h b{font:700 15.5px/1.2 var(--f-display);letter-spacing:.02em}
+.linkbtn{background:none;border:0;padding:0;cursor:pointer;color:var(--accent);font:600 12.5px/1.2 var(--f-display);letter-spacing:.08em;text-transform:uppercase}
+.linkbtn:hover{text-decoration:underline}
+.where{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:15px}
+.where .file{display:block;font:400 12px/1.4 var(--f-mono);color:var(--muted);overflow-wrap:anywhere}
+.notebox{display:flex;flex-direction:column;gap:6px}
+.notebox textarea{width:100%;min-height:62px;resize:vertical;background:var(--field);border:1px solid var(--rule);border-radius:4px;padding:8px 10px;font:15px/1.45 var(--f-body);box-sizing:border-box}
+.flagged-mark{color:var(--mr)}
+.copyout{width:100%;min-height:120px;font:12px/1.4 var(--f-mono);background:var(--field);border:1px solid var(--rule);border-radius:4px;padding:8px;box-sizing:border-box}
+.eq.hl{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+
 /* side ledger */
 .side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);background:var(--panel);border:1px solid var(--rule);border-radius:6px}
 .side summary{cursor:pointer;padding:12px 14px;font:600 13px/1 var(--f-display);letter-spacing:.12em;text-transform:uppercase;list-style:none;display:flex;justify-content:space-between}
@@ -200,6 +231,8 @@ details.rev .body{padding:0 14px 14px;display:flex;flex-direction:column;gap:8px
 @media (min-width: 861px){ .side > summary{display:none} }
 @media (prefers-reduced-motion: reduce){ .flash .face{transition:none} }
 </style>
+</head>
+<body>
 
 <header class="bar">
   <div class="brand"><h1>AAE 412 Study Lab</h1><span class="course">Space Systems · Wirz · F26</span></div>
@@ -235,6 +268,8 @@ details.rev .body{padding:0 14px 14px;display:flex;flex-direction:column;gap:8px
       <ul class="ledger" id="ledger"></ul>
       <label class="switch"><input type="checkbox" id="mr"><span>Weight midterm-review topics higher</span></label>
       <p class="note">Bars show your accuracy per topic. Red marks a weak topic (under 70% after 4 or more answers). Missed items come back more often. Progress is saved in this browser only.</p>
+      <h3>Flagged for follow-up</h3>
+      <div id="flagbox"></div>
       <div id="reset-box"><button class="btn ghost" id="reset">Reset progress</button></div>
       <h3>Resource</h3>
       <a class="reslink" href="orbit-lab.html"><b>Orbit Angle Lab</b><span>3D views of orbital elements, launch azimuth, plane change, coverage and phase angle.</span></a>
@@ -252,6 +287,7 @@ window.MathJax = {
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js" async></script>
 <script src="bank.js"></script>
+<script src="deep.js"></script>
 <script>
 (function(){
 "use strict";
@@ -282,11 +318,74 @@ function topicStat(t){ let r = 0, w = 0; for (const k in S.items) { const it = S
 const isWeakTopic = t => { const s = topicStat(t); return s.n >= 4 && s.acc < 0.7; };
 const selected = t => S.sel.includes(t);
 
+/* ---------- flags, deeper explanations, sources ---------- */
+const DEEP = window.AAE_DEEP || {}, NUMREF = window.AAE_NUMREF || {};
+const EQBY = Object.fromEntries(EQ.map(e => [e.id, e]));
+S.flags = S.flags || {};
+const isFlagged = id => !!S.flags[id];
+function toggleFlag(id, t, kind){ if (S.flags[id]) delete S.flags[id]; else S.flags[id] = { t, kind, at: Date.now(), note: "" }; save(); renderSide(); }
+const openDeep = new Set();
+const SRC = [
+  ["Midterm Review", "Midterm Course Review slides", "AAE412_F26Midterm_ReviewSlides.pdf"],
+  ["Space Env notes", "Space Environment notes", "AAE412-512-F26Space-EnvNotes.pdf"],
+  ["Space Env bonus", "Space Environment slides (bonus section)", "AAE412_F26Space-EnvSlides.pdf"],
+  ["Space Env", "Space Environment slides", "AAE412_F26Space-EnvSlides.pdf"],
+  ["Astro notes", "Astronautics notes", "AAE412-F26AstroNotes.pdf"],
+  ["Astro Pt1", "Astronautics Part 1 slides", "AAE412_F26Astro-Pt1Slides.pdf"],
+  ["Astro Pt2", "Astronautics Part 2 slides", "AAE412_F26Astro-Pt2Slides.pdf"],
+  ["Space Propulsion", "Space Propulsion slides", "AAE412_F26Space_PropulsionSlides.pdf"],
+  ["Propulsion notes", "Rocket Propulsion notes", "AAE412_F26Propulsionnotes_v2.pdf"],
+  ["Staging notes", "Staging notes", "AAE412_F26StagingNotes.pdf"],
+  ["Launch notes", "Launch notes", "AAE412_F26LaunchNotes.pdf"],
+  ["Launch", "Launch slides", "AAE412_F26LaunchSlides.pdf"],
+  ["Chem", "Chemical Propulsion slides", "AAE412_F26Chemical_PropulsionSlides.pdf"],
+  ["Interplanetary", "Interplanetary Missions slides", "AAE412_F26InterplanetarySlides.pdf"],
+  ["Missions", "Space Missions slides", "AAE412_F26Space_MissionsSlides.pdf"],
+  ["HW1", "Homework 1 (and solutions)", "AAE412-F26-HW1_Intro_Space_Env.pdf"],
+  ["HW2", "Homework 2", "AAE412_F26AstroHw2.pdf"],
+  ["HW3", "Homework 3", "AAE412_F26_HW3_Prop.pdf"],
+  ["HW4", "Homework 4", "AAE412_F26_HW4_Launch.pdf"]
+];
+function srcItems(src){
+  return String(src).split(";").map(x => x.trim()).filter(Boolean).map(part => {
+    const m = SRC.find(r => part.startsWith(r[0])); if (!m) return { name: part, loc: "", file: "" };
+    let rest = part.slice(m[0].length).trim(), loc = "";
+    if (rest) {
+      const plural = /[–,-]/.test(rest);
+      if (/^s\./.test(rest)) loc = (plural ? "slides " : "slide ") + rest.replace(/s\./g, "");
+      else if (/^p\./.test(rest)) loc = (plural ? "pages " : "page ") + rest.replace(/p\./g, "");
+      else loc = (/,/.test(rest) ? "problems " : "problem ") + rest.replace(/#/g, "");
+    }
+    return { name: m[1], loc, file: m[2] };
+  });
+}
+function whereHTML(src){ return `<ul class="where">${srcItems(src).map(x => `<li><b>${esc(x.name)}</b>${x.loc ? ", " + esc(x.loc) : ""}${x.file ? `<span class="file">${esc(x.file)}</span>` : ""}</li>`).join("")}</ul>`; }
+function eqMiniHTML(ids){
+  const list = ids.map(id => EQBY[id]).filter(Boolean); if (!list.length) return "";
+  return `<div class="dsec"><span class="lbl">Related equations</span>${list.map(e => `<div class="mini"><div class="mini-h"><b>${esc(e.name)}</b><button class="linkbtn" data-goeq="${e.id}">Open on equation sheet →</button></div><div class="disp">\\[${e.tex}\\]</div></div>`).join("")}</div>`;
+}
+function deepHTML(q){
+  const dd = DEEP[q.id];
+  return `<div class="deep" id="deep-${q.id}">
+    ${dd ? `<div class="dsec"><span class="lbl">Explained in more depth</span><p>${dd.d}</p></div>` : ""}
+    ${eqMiniHTML(dd ? dd.eq : [])}
+    <div class="dsec"><span class="lbl">Where it's covered</span>${whereHTML(q.src)}</div></div>`;
+}
+function numDeepHTML(g){
+  const r = NUMREF[g.id]; if (!r) return "";
+  return `<div class="deep">${eqMiniHTML(r.eq)}<div class="dsec"><span class="lbl">Where it's covered</span>${whereHTML(r.src)}</div></div>`;
+}
+const FLAG_SVG = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 15V1.5M3 2h9l-2 3.5 2 3.5H3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+function flagBtn(id, t, kind){ const on = isFlagged(id); return `<button class="tbtn" data-flag="${id}" data-t="${t}" data-fkind="${kind}" aria-pressed="${on}">${FLAG_SVG}${on ? "Flagged" : "Flag for follow-up"}</button>`; }
+function moreBtn(id){ const on = openDeep.has(id); return `<button class="tbtn" data-more="${id}" aria-expanded="${on}">${on ? "Hide explanation" : "Explain more"}</button>`; }
+function noteHTML(id){ if (!isFlagged(id)) return ""; return `<div class="notebox"><label class="lbl" for="note-${id}">What's unclear? (optional)</label><textarea id="note-${id}" data-note="${id}" placeholder="e.g. why the plane change goes at apogee">${esc(S.flags[id].note || "")}</textarea></div>`; }
+
 function weight(item, mrBoost){
   const s = S.items[item.id]; let w = 1;
   if (S.mr && item.mr) w *= (mrBoost || 2);
   if (!s) w *= 1.6; else { const n = s.r + s.w; w *= 1 + 3 * (s.w / n); if (s.r >= 3 && s.w === 0) w *= 0.5; }
   if (isWeakTopic(item.t)) w *= 1.5;
+  if (S.flags && S.flags[item.id]) w *= 1.5;
   return w;
 }
 function pickWeighted(pool, avoid, mrBoost){
@@ -314,6 +413,34 @@ function renderSide(){
       <span class="meter"><i class="${weak ? "weak" : ""}" style="width:${pct}%"></i></span></button></li>`;
   }).join("");
   $("#mr").checked = !!S.mr;
+  renderFlagBox();
+}
+function flagCounts(){ const c = { mc: 0, card: 0, num: 0 }; for (const k in S.flags) c[S.flags[k].kind] = (c[S.flags[k].kind] || 0) + 1; return c; }
+function renderFlagBox(){
+  const box = $("#flagbox"); if (!box) return; const n = Object.keys(S.flags).length, c = flagCounts();
+  if (!n) { box.innerHTML = '<p class="note">Flag any question, card or problem you want to come back to or ask about. It shows up here, and flagged items come up more often.</p>'; return; }
+  const parts = [c.mc && `${c.mc} question${c.mc > 1 ? "s" : ""}`, c.card && `${c.card} card${c.card > 1 ? "s" : ""}`, c.num && `${c.num} problem type${c.num > 1 ? "s" : ""}`].filter(Boolean).join(", ");
+  box.innerHTML = `<p class="note" style="color:var(--ink-2)"><span class="flagged-mark">●</span> ${n} flagged: ${parts}</p>
+    <div class="row" style="gap:6px">${c.mc ? '<button class="chip" id="fl-review">Review flagged questions</button>' : ""}${c.card ? '<button class="chip" id="fl-cards">Flagged cards</button>' : ""}${c.num ? '<button class="chip" id="fl-probs">Flagged problems</button>' : ""}<button class="chip" id="fl-copy">Copy list for office hours</button></div><div id="fl-out"></div>`;
+  const rv = $("#fl-review"); if (rv) rv.onclick = () => { P.mode = "flagged"; P.recent = []; P.cur = null; setView("practice", true); };
+  const fc = $("#fl-cards"); if (fc) fc.onclick = () => { FC.flagOnly = true; setView("cards", true); RENDER.cards(true); };
+  const fp = $("#fl-probs"); if (fp) fp.onclick = () => { PR.flagOnly = true; PR.cur = null; setView("problems", true); };
+  $("#fl-copy").onclick = copyFlagged;
+}
+const plain = s => String(s).replace(/<\/?[a-z][^>]*>/gi, "").replace(/\\\(|\\\)/g, "").replace(/\s+/g, " ").trim();
+function copyFlagged(){
+  const lines = ["AAE 412 – flagged for follow-up", ""];
+  Object.keys(S.flags).sort((a, b) => S.flags[a].at - S.flags[b].at).forEach((id, i) => {
+    const f = S.flags[id]; let txt = "";
+    if (f.kind === "mc") { const q = MC.find(x => x.id === id); if (!q) return; txt = `${i + 1}. [${TN[q.t].name}] ${plain(q.q)}\n   Answer: ${plain(q.ch[q.a])}\n   Source: ${srcItems(q.src).map(x => x.name + (x.loc ? ", " + x.loc : "")).join("; ")}`; }
+    else if (f.kind === "card") { const c = CARDS.find(x => x.id === id) || EQCARDS.find(x => x.id === id); if (!c) return; txt = `${i + 1}. [${TN[c.t].name}] Card: ${plain(c.eq ? c.eq.name : c.front)}`; }
+    else { const g = NUM.find(x => x.id === id); if (!g) return; const r = NUMREF[g.id]; txt = `${i + 1}. [${TN[g.t].name}] Problem type: ${g.title}${r ? `\n   Source: ${srcItems(r.src).map(x => x.name + (x.loc ? ", " + x.loc : "")).join("; ")}` : ""}`; }
+    if (f.note) txt += `\n   My question: ${f.note}`;
+    lines.push(txt, "");
+  });
+  const text = lines.join("\n"), out = $("#fl-out");
+  const fallback = () => { out.innerHTML = '<p class="note">Copy this text:</p><textarea class="copyout" id="fl-text" readonly></textarea>'; const ta = $("#fl-text"); ta.value = text; ta.focus(); ta.select(); };
+  try { navigator.clipboard.writeText(text).then(() => { out.innerHTML = '<p class="note" style="color:var(--ok-fg)">Copied to your clipboard.</p>'; }, fallback); } catch (e) { fallback(); }
 }
 $("#ledger").addEventListener("click", e => {
   const b = e.target.closest(".trow"); if (!b) return; const t = b.dataset.t;
@@ -349,22 +476,24 @@ const P = { kinds: ["concept", "equation", "fact"], cur: null, order: null, pick
 function practicePool(){
   let pool = MC.filter(q => selected(q.t) && P.kinds.includes(q.k));
   if (P.mode === "missed") pool = pool.filter(q => { const s = S.items[q.id]; return s && s.w > 0 && s.w >= s.r; });
+  if (P.mode === "flagged") pool = MC.filter(q => isFlagged(q.id));
   return pool;
 }
 function nextPractice(){
   const pool = practicePool(); const q = pickWeighted(pool, P.recent);
+  if (P.cur) openDeep.delete(P.cur.id);
   P.cur = q; P.picked = null; if (!q) return;
   P.order = shuffle([0, 1, 2, 3].slice(0, q.ch.length));
   P.recent.push(q.id); const keep = Math.min(25, Math.floor(pool.length * 0.6)); while (P.recent.length > keep) P.recent.shift();
 }
 RENDER.practice = function(reset){
   const el = $("#v-practice");
-  if (reset || !P.cur || !selected(P.cur.t) || !P.kinds.includes(P.cur.k)) nextPractice();
+  if (reset || !P.cur || (P.mode !== "flagged" && (!selected(P.cur.t) || !P.kinds.includes(P.cur.k)))) nextPractice();
   const pool = practicePool();
   const kindChips = Object.keys(KIND).map(k => `<button class="chip" aria-pressed="${P.kinds.includes(k)}" data-kind="${k}">${{ concept: "Concepts", equation: "Equations", fact: "Slide facts" }[k]}</button>`).join("");
   let body;
   if (!S.sel.length) body = noTopics;
-  else if (!P.cur) body = `<p class="empty">${P.mode === "missed" ? "Nothing to review: no question in these topics is currently more missed than right. Switch back to Adaptive." : "No questions match these filters."}</p>`;
+  else if (!P.cur) body = `<p class="empty">${P.mode === "missed" ? "Nothing to review: no question in these topics is currently more missed than right. Switch back to Adaptive." : P.mode === "flagged" ? "No flagged questions yet. Use Flag for follow-up on any question to save it here." : "No questions match these filters."}</p>`;
   else {
     const q = P.cur, done = P.picked != null, ok = done && P.picked === q.a;
     body = `<div class="card" id="pq">
@@ -374,8 +503,10 @@ RENDER.practice = function(reset){
         let cls = ""; if (done) { if (oi === q.a) cls = "right"; else if (oi === P.picked) cls = "wrong"; }
         return `<li><button class="choice ${cls}" data-oi="${oi}" ${done ? "disabled" : ""}><span class="k">${"ABCD"[j]}</span><span class="t">${q.ch[oi]}</span></button></li>`; }).join("")}</ol>
       ${done ? `<div class="fb ${ok ? "ok" : "bad"}"><span class="verdict">${ok ? "Correct" : "Not quite"}</span><p class="ex">${q.ex}</p><span class="src">Source: ${esc(q.src)}</span></div>` : ""}
-      <div class="foot"><span class="kbd">${done ? "Enter for next" : "Keys 1–4 or A–D to answer"}</span>
-        <button class="btn" id="pnext" ${done ? "" : 'disabled'}>Next question</button></div>
+      ${done && openDeep.has(q.id) ? deepHTML(q) : ""}
+      ${noteHTML(q.id)}
+      <div class="foot"><div class="tools">${flagBtn(q.id, q.t, "mc")}${done ? moreBtn(q.id) : ""}</div>
+        <div class="row"><span class="kbd">${done ? "Enter for next" : "Keys 1–4 or A–D"}</span><button class="btn" id="pnext" ${done ? "" : 'disabled'}>Next question</button></div></div>
     </div>`;
   }
   el.innerHTML = `${sheet("Practice", `${P.n ? `Session <b>${P.ok}/${P.n}</b> · ${Math.round(100 * P.ok / P.n)}%` : `${pool.length} questions in play`}`)}
@@ -383,7 +514,8 @@ RENDER.practice = function(reset){
     <div class="row"><span class="lbl">Type</span>${kindChips}</div>
     <div class="row"><span class="lbl">Order</span>
       <button class="chip" aria-pressed="${P.mode === "adaptive"}" data-mode="adaptive">Adaptive</button>
-      <button class="chip" aria-pressed="${P.mode === "missed"}" data-mode="missed">Review my misses</button></div>
+      <button class="chip" aria-pressed="${P.mode === "missed"}" data-mode="missed">Review my misses</button>
+      <button class="chip" aria-pressed="${P.mode === "flagged"}" data-mode="flagged">Flagged (${flagCounts().mc})</button></div>
     ${body}`;
   el.querySelectorAll("[data-kind]").forEach(b => b.onclick = () => { const k = b.dataset.kind; P.kinds = P.kinds.includes(k) ? P.kinds.filter(x => x !== k) : P.kinds.concat(k); if (!P.kinds.length) P.kinds = [k]; RENDER.practice(true); });
   el.querySelectorAll("[data-mode]").forEach(b => b.onclick = () => { P.mode = b.dataset.mode; P.recent = []; RENDER.practice(true); });
@@ -400,12 +532,13 @@ function answerPractice(oi){
 }
 
 /* ----- Flashcards ----- */
-const FC = { decks: ["fact", "eq"], list: [], i: 0, flipped: false, knew: 0, seen: 0 };
+const FC = { decks: ["fact", "eq"], list: [], i: 0, flipped: false, knew: 0, seen: 0, flagOnly: false };
 const EQCARDS = EQ.map(e => ({ id: "eqc-" + e.id, t: e.t, mr: e.mr, eq: e }));
 function buildDeck(){
   let pool = [];
   if (FC.decks.includes("fact")) pool = pool.concat(CARDS.filter(c => selected(c.t)));
   if (FC.decks.includes("eq")) pool = pool.concat(EQCARDS.filter(c => selected(c.t)));
+  if (FC.flagOnly) pool = CARDS.concat(EQCARDS).filter(c => isFlagged(c.id));
   FC.list = pool.map(c => ({ c, k: Math.random() * weight(c) })).sort((a, b) => b.k - a.k).map(x => x.c);
   FC.i = 0; FC.flipped = false; FC.knew = 0; FC.seen = 0;
 }
@@ -423,10 +556,11 @@ RENDER.cards = function(reset){
   const el = $("#v-cards");
   if (reset || !FC.list.length) buildDeck();
   const deckChips = `<button class="chip" aria-pressed="${FC.decks.includes("fact")}" data-deck="fact">Slide facts (${CARDS.filter(c => selected(c.t)).length})</button>
-    <button class="chip" aria-pressed="${FC.decks.includes("eq")}" data-deck="eq">Equations (${EQCARDS.filter(c => selected(c.t)).length})</button>`;
+    <button class="chip" aria-pressed="${FC.decks.includes("eq")}" data-deck="eq">Equations (${EQCARDS.filter(c => selected(c.t)).length})</button>
+    <button class="chip" aria-pressed="${FC.flagOnly}" data-flagonly="1">Flagged only (${flagCounts().card})</button>`;
   let body;
   if (!S.sel.length) body = noTopics;
-  else if (!FC.list.length) body = '<p class="empty">No cards match these filters.</p>';
+  else if (!FC.list.length) body = `<p class="empty">${FC.flagOnly ? "No flagged cards yet. Flip a card and use Flag for follow-up to save it." : "No cards match these filters."}</p>`;
   else if (FC.i >= FC.list.length) body = `<div class="card"><div class="head"><h2>Deck finished</h2><p>You knew ${FC.knew} of ${FC.seen}. The cards you missed move toward the front next time.</p></div><div class="row"><button class="btn" id="fc-again">Shuffle a new pass</button></div></div>`;
   else {
     const c = FC.list[FC.i], fa = cardFaces(c);
@@ -434,12 +568,13 @@ RENDER.cards = function(reset){
         <div class="face front">${fa.front}<span class="hint">Click or press Space to flip</span></div>
         <div class="face back">${fa.back}<span class="hint">Did you know it?</span></div></div>
       <div class="foot"><span class="kbd">Card ${FC.i + 1} of ${FC.list.length} · knew ${FC.knew}/${FC.seen}</span>
-        <div class="row"><button class="btn ghost" id="fc-miss" ${FC.flipped ? "" : "disabled"}>Missed it</button><button class="btn" id="fc-knew" ${FC.flipped ? "" : "disabled"}>Knew it</button></div></div>`;
+        <div class="row">${flagBtn(c.id, c.t, "card")}<button class="btn ghost" id="fc-miss" ${FC.flipped ? "" : "disabled"}>Missed it</button><button class="btn" id="fc-knew" ${FC.flipped ? "" : "disabled"}>Knew it</button></div></div>${noteHTML(c.id)}`;
   }
   el.innerHTML = `${sheet("Flashcards", FC.list.length ? `${FC.list.length} cards` : "")}
     <div class="head"><h2>Flashcards</h2><p>Slide facts to memorize, plus every equation on the sheet: write it from memory, then check the terms and when it applies.</p></div>
     <div class="row"><span class="lbl">Deck</span>${deckChips}</div>${body}`;
-  el.querySelectorAll("[data-deck]").forEach(b => b.onclick = () => { const d = b.dataset.deck; FC.decks = FC.decks.includes(d) ? FC.decks.filter(x => x !== d) : FC.decks.concat(d); if (!FC.decks.length) FC.decks = [d]; RENDER.cards(true); });
+  const fo = el.querySelector("[data-flagonly]"); if (fo) fo.onclick = () => { FC.flagOnly = !FC.flagOnly; RENDER.cards(true); };
+  el.querySelectorAll("[data-deck]").forEach(b => b.onclick = () => { FC.flagOnly = false; const d = b.dataset.deck; FC.decks = FC.decks.includes(d) ? FC.decks.filter(x => x !== d) : FC.decks.concat(d); if (!FC.decks.length) FC.decks = [d]; RENDER.cards(true); });
   const fl = $("#flash"); if (fl) fl.onclick = flipCard;
   const m = $("#fc-miss"), k = $("#fc-knew"); if (m) m.onclick = () => gradeCard(false); if (k) k.onclick = () => gradeCard(true);
   const ag = $("#fc-again"); if (ag) ag.onclick = () => RENDER.cards(true);
@@ -454,20 +589,20 @@ function sizeFlash(){
 }
 
 /* ----- Problems ----- */
-const PR = { cur: null, done: false, showSol: false, val: "", result: null, recent: [] };
+const PR = { cur: null, done: false, showSol: false, val: "", result: null, recent: [], flagOnly: false };
 function newProblem(){
-  const pool = NUM.filter(g => selected(g.t)); const g = pickWeighted(pool, PR.recent);
+  const pool = PR.flagOnly ? NUM.filter(g => isFlagged(g.id)) : NUM.filter(g => selected(g.t)); const g = pickWeighted(pool, PR.recent);
   if (!g) { PR.cur = null; return; }
   PR.recent.push(g.id); while (PR.recent.length > Math.min(6, Math.floor(pool.length / 2))) PR.recent.shift();
   PR.cur = { g, p: g.gen() }; PR.done = false; PR.showSol = false; PR.val = ""; PR.result = null;
 }
 RENDER.problems = function(reset){
   const el = $("#v-problems");
-  if (reset || !PR.cur || !selected(PR.cur.g.t)) newProblem();
-  const pool = NUM.filter(g => selected(g.t));
+  if (reset || !PR.cur || (!PR.flagOnly && !selected(PR.cur.g.t))) newProblem();
+  const pool = PR.flagOnly ? NUM.filter(g => isFlagged(g.id)) : NUM.filter(g => selected(g.t));
   let body;
   if (!S.sel.length) body = noTopics;
-  else if (!PR.cur) body = '<p class="empty">No problem types in these topics.</p>';
+  else if (!PR.cur) body = `<p class="empty">${PR.flagOnly ? "No flagged problem types yet." : "No problem types in these topics."}</p>`;
   else {
     const { g, p } = PR.cur;
     body = `<div class="card">
@@ -477,11 +612,15 @@ RENDER.problems = function(reset){
         <button class="btn" id="pr-check" ${PR.done ? "disabled" : ""}>Check</button></div>
       ${PR.result ? `<div class="fb ${PR.result.ok ? "ok" : "bad"}"><span class="verdict">${PR.result.ok ? "Correct" : (PR.result.nan ? "Enter a number" : "Not quite")}</span>${PR.result.nan ? "" : `<p class="ex">Expected ${fmtNum(p.ans, p.sig)} ${esc(p.unit)}${PR.result.ok ? "" : `; you entered ${fmtNum(PR.result.v, p.sig)}`}. Answers within 2% count.</p>`}</div>` : ""}
       ${PR.showSol || PR.done ? `<div><span class="lbl">Worked solution</span><ol class="steps">${p.steps.map(s => `<li>${s}</li>`).join("")}</ol></div>` : ""}
-      <div class="foot"><button class="btn ghost" id="pr-sol" ${PR.showSol || PR.done ? "disabled" : ""}>Show solution</button><button class="btn" id="pr-new">New problem</button></div>
+      ${openDeep.has(g.id) ? numDeepHTML(g) : ""}
+      ${noteHTML(g.id)}
+      <div class="foot"><div class="tools">${flagBtn(g.id, g.t, "num")}${moreBtn(g.id)}</div><div class="row"><button class="btn ghost" id="pr-sol" ${PR.showSol || PR.done ? "disabled" : ""}>Show solution</button><button class="btn" id="pr-new">New problem</button></div></div>
     </div>`;
   }
   el.innerHTML = `${sheet("Problems", `${pool.length} problem types · new numbers every time`)}
-    <div class="head"><h2>Numeric problems</h2><p>Homework-style calculations with random inputs. Uses μ⊕ = 398,600 km³/s², R⊕ = 6371 km and g = 9.81 m/s².</p></div>${body}`;
+    <div class="head"><h2>Numeric problems</h2><p>Homework-style calculations with random inputs. Uses μ⊕ = 398,600 km³/s², R⊕ = 6371 km and g = 9.81 m/s².</p></div>
+    <div class="row"><span class="lbl">Show</span><button class="chip" aria-pressed="${!PR.flagOnly}" data-pf="0">All selected topics</button><button class="chip" aria-pressed="${PR.flagOnly}" data-pf="1">Flagged only (${flagCounts().num})</button></div>${body}`;
+  el.querySelectorAll("[data-pf]").forEach(b => b.onclick = () => { PR.flagOnly = b.dataset.pf === "1"; PR.recent = []; RENDER.problems(true); });
   const inp = $("#pr-in");
   if (inp) { inp.oninput = () => PR.val = inp.value; inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); checkProblem(); } }; }
   const c = $("#pr-check"); if (c) c.onclick = checkProblem;
@@ -581,10 +720,11 @@ RENDER.exam = function(){
     ${res.map((r, k) => {
       let body, title;
       if (r.it.type === "mc") { const q = r.it.q; title = q.q.replace(/<[^>]+>/g, "");
-        body = `<div class="qtext" style="font-size:16px">${q.q}</div><div>Your answer: ${r.a == null ? "<i>blank</i>" : q.ch[r.a]}</div><div>Correct: <b>${q.ch[q.a]}</b></div><p class="ex" style="margin:0">${q.ex}</p><span class="src">Source: ${esc(q.src)}</span>`; }
+        body = `<div class="qtext" style="font-size:16px">${q.q}</div><div>Your answer: ${r.a == null ? "<i>blank</i>" : q.ch[r.a]}</div><div>Correct: <b>${q.ch[q.a]}</b></div><p class="ex" style="margin:0">${q.ex}</p><span class="src">Source: ${esc(q.src)}</span>${openDeep.has(q.id) ? deepHTML(q) : ""}${noteHTML(q.id)}<div class="tools">${flagBtn(q.id, q.t, "mc")}${moreBtn(q.id)}</div>`; }
       else { const p = r.it.p; title = r.it.g.title;
-        body = `<div class="qtext" style="font-size:16px">${p.q}</div><div>Your answer: ${r.a ? esc(r.a) : "<i>blank</i>"} · Correct: <b>${fmtNum(p.ans, p.sig)} ${esc(p.unit)}</b></div><ol class="steps">${p.steps.map(s => `<li>${s}</li>`).join("")}</ol>`; }
-      return `<details class="rev" ${r.ok ? "" : "open"}><summary><span class="tag ${r.ok ? "ok" : "bad"}">${k + 1} · ${r.ok ? "Right" : "Missed"}</span><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(title.slice(0, 140))}</span></summary><div class="body">${body}</div></details>`;
+        body = `<div class="qtext" style="font-size:16px">${p.q}</div><div>Your answer: ${r.a ? esc(r.a) : "<i>blank</i>"} · Correct: <b>${fmtNum(p.ans, p.sig)} ${esc(p.unit)}</b></div><ol class="steps">${p.steps.map(s => `<li>${s}</li>`).join("")}</ol>${openDeep.has(r.it.g.id) ? numDeepHTML(r.it.g) : ""}${noteHTML(r.it.g.id)}<div class="tools">${flagBtn(r.it.g.id, r.it.g.t, "num")}${moreBtn(r.it.g.id)}</div>`; }
+      const rid = r.it.type === "mc" ? r.it.q.id : r.it.g.id;
+      return `<details class="rev" ${!r.ok || openDeep.has(rid) || isFlagged(rid) ? "open" : ""}><summary><span class="tag ${r.ok ? "ok" : "bad"}">${k + 1} · ${r.ok ? "Right" : "Missed"}</span><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(title.slice(0, 140))}</span></summary><div class="body">${body}</div></details>`;
     }).join("")}`;
   $("#ex-new").onclick = () => { EX.state = "setup"; RENDER.exam(); };
   $("#ex-weak").onclick = () => { const miss = [...new Set(res.filter(r => !r.ok).map(r => r.it.type === "mc" ? r.it.q.t : r.it.g.t))]; if (miss.length) { S.sel = miss; save(); renderSide(); } setView("practice", true); };
@@ -600,7 +740,7 @@ RENDER.equations = function(){
   const needle = EQS.q.trim().toLowerCase();
   const list = EQ.filter(e => selected(e.t) && (!needle || (e.name + " " + e.use + " " + e.assume + " " + e.watch + " " + e.terms.map(t => t[1]).join(" ")).toLowerCase().includes(needle)));
   const groups = TOPICS.filter(t => list.some(e => e.t === t.id)).map(t => `<div class="eqgroup"><h3>${esc(t.name)}</h3>${list.filter(e => e.t === t.id).map(e => `
-    <article class="eq"><div class="top"><h4>${esc(e.name)}</h4>${e.mr ? '<span class="mrtag">● on midterm review</span>' : ""}</div>
+    <article class="eq" id="eq-${e.id}"><div class="top"><h4>${esc(e.name)}</h4>${e.mr ? '<span class="mrtag">● on midterm review</span>' : ""}</div>
       <div class="disp">\\[${e.tex}\\]</div>
       <dl>${e.terms.length ? `<dt>Terms</dt><dd class="terms">${e.terms.map(x => `<span>\\(${x[0]}\\) ${esc(x[1])}</span>`).join("")}</dd>` : ""}
         <dt>Use when</dt><dd>${e.use}</dd>
@@ -615,6 +755,20 @@ RENDER.equations = function(){
   const s = $("#eq-search"); s.oninput = () => { EQS.q = s.value; const pos = s.selectionStart; RENDER.equations(); const s2 = $("#eq-search"); s2.focus(); try { s2.setSelectionRange(pos, pos); } catch (e) {} };
   typeset($("#eq-list"));
 };
+
+/* ---------- flag / explain / jump handlers ---------- */
+$("#main").addEventListener("click", e => {
+  const f = e.target.closest("[data-flag]");
+  if (f) { e.preventDefault(); toggleFlag(f.dataset.flag, f.dataset.t, f.dataset.fkind); const y = window.scrollY; RENDER[view](false); window.scrollTo(0, y); return; }
+  const m = e.target.closest("[data-more]");
+  if (m) { e.preventDefault(); const id = m.dataset.more; if (openDeep.has(id)) openDeep.delete(id); else openDeep.add(id); const y = window.scrollY; RENDER[view](false); window.scrollTo(0, y); return; }
+  const g = e.target.closest("[data-goeq]");
+  if (g) { e.preventDefault(); const id = g.dataset.goeq, eq = EQBY[id]; if (eq && !selected(eq.t)) { S.sel = S.sel.concat(eq.t); save(); renderSide(); } EQS.q = ""; setView("equations", true);
+    const art = document.getElementById("eq-" + id); if (art) { art.scrollIntoView({ block: "start", behavior: "smooth" }); art.classList.add("hl"); setTimeout(() => art.classList.remove("hl"), 2500); } }
+});
+$("#main").addEventListener("input", e => {
+  const t = e.target.closest("[data-note]"); if (!t) return; const id = t.dataset.note; if (S.flags[id]) { S.flags[id].note = t.value; save(); }
+});
 
 /* ---------- keyboard ---------- */
 document.addEventListener("keydown", e => {
@@ -639,4 +793,5 @@ setView(VIEWS.includes(start) ? start : "practice", false);
 })();
 </script>
 
-</body></html>
+</body>
+</html>

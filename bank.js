@@ -36,10 +36,10 @@ mc("env","concept",1,R`At low LEO (≈200–400 km), which disturbance torque is
  R`Atmospheric density is highest there, so the drag force acting through a center-of-pressure offset gives the largest torque. It drops off steeply with altitude.`,"Midterm Review s.4");
 mc("env","fact",1,R`Which space-environment concern <b>dominates in MEO</b> (period ≈ 12 hr)?`,
  ["Trapped radiation from the Van Allen belts","Atmospheric drag","Solar radiation pressure","Atomic oxygen erosion"],0,
- R`LEO: must consider the atmosphere (drag, reactions), relatively low radiation. MEO: dominated by Van Allen belt radiation. GEO: dominated by solar radiation.`,"Space Env s.7; Midterm Review s.30");
+ R`LEO: must consider the atmosphere (drag, reactions), relatively low radiation. MEO: dominated by Van Allen belt radiation. GEO: dominated by solar radiation.`,"Space Env s.6; Midterm Review s.30");
 mc("env","fact",1,R`What environment concern dominates at <b>GEO</b>?`,
  ["Solar radiation","Atmospheric drag","Inner Van Allen belt protons","Atomic oxygen"],0,
- R`GEO (≈ 6.6 Earth radii) sits outside the densest trapped-particle regions and far above the atmosphere, so solar radiation (particles and EM) is the main concern.`,"Space Env s.7");
+ R`GEO (≈ 6.6 Earth radii) sits outside the densest trapped-particle regions and far above the atmosphere, so solar radiation (particles and EM) is the main concern.`,"Space Env s.6");
 mc("env","fact",0,R`At what altitude is the Kármán line, commonly used as the boundary of space?`,
  ["100 km","50 km","80 km","200 km"],0,
  R`100 km (62 mi). Von Kármán showed that around this altitude a vehicle would need to go faster than orbital velocity to get enough aerodynamic lift.`,"Space Env s.10");
@@ -81,7 +81,7 @@ mc("env","fact",0,R`The inner Van Allen belt (≈1.1–2.5 DU) is known as the "
  R`Inner belt: energetic protons that can exceed 100 MeV (plus electrons at hundreds of keV), peak ≈1.5 DU. Outer belt: energetic electrons ≈0.1–10 MeV, peak ≈4–6 DU. Intensity is not maximum at GEO.`,"Space Env s.25");
 mc("env","concept",0,R`What creates the Van Allen belts?`,
  ["High-energy particles from the solar wind trapped by Earth's magnetic field","Ionization of the upper atmosphere by UV","Charged debris from old spacecraft","Galactic cosmic rays reflecting off the ionosphere"],0,
- R`The solar wind interacting with Earth's magnetosphere gives toroidal regions of trapped energetic particles: the inner and outer belts.`,"Space Env s.3, s.25");
+ R`The solar wind interacting with Earth's magnetosphere gives toroidal regions of trapped energetic particles: the inner and outer belts.`,"Space Env s.4, s.25");
 mc("env","fact",0,R`Which ionosphere region has the highest electron density?`,
  ["F2 (≈200–400 km)","D (≈70–90 km)","E (≈95–140 km)","Plasmasphere (>1200 km)"],0,
  R`F2, 200–400 km, mostly N⁺ and O⁺. D is weakly ionized. E is mostly O₂⁺. F1 is NO⁺ and O⁺. The plasmasphere is H⁺ and He⁺.`,"Space Env s.33");
@@ -99,7 +99,7 @@ mc("env","fact",0,R`What is the F10.7 index?`,
  R`F10.7 is the 10.7 cm solar radio flux. It tracks the ~11-year solar cycle and drives thermosphere-density models. The geomagnetic index on the same chart is \(a_p\).`,"Space Env s.15–16");
 mc("env","fact",0,R`A meteoroid that enters Earth's atmosphere and survives to hit the surface is called a…`,
  ["Meteorite","Meteor","Meteoroid","Bolide"],0,
- R`Meteoroid: debris in the solar system. Meteor: a meteoroid that enters Earth's atmosphere. Meteorite: a meteor that survives to impact.`,"Space Env bonus s.44");
+ R`Meteoroid: debris in the solar system. Meteor: a meteoroid that enters Earth's atmosphere. Meteorite: a meteor that survives to impact.`,"Space Env bonus s.45");
 mc("env","fact",0,R`What shielding approach does the ISS use against debris and micrometeoroids?`,
  ["A stuffed Whipple shield: spaced, multi-layer bumpers","A single thick aluminum wall","Active magnetic deflection","Water tanks only"],0,
  R`A stuffed Whipple shield breaks up the impactor on outer layers so the spread-out debris cloud hits the inner wall.`,"Space Env bonus s.47");
@@ -128,7 +128,7 @@ mc("orb","equation",0,R`What does the orbital period \(P = 2\pi\sqrt{a^3/\mu}\) 
  R`Kepler's 3rd law: \(P^2 \propto a^3\). Two orbits with the same \(a\) have the same period and the same energy, whatever their eccentricity.`,"Astro notes p.7");
 mc("orb","concept",1,R`A homework problem gives "a 400 km orbit." What radius goes into vis-viva or \(v_c = \sqrt{\mu/r}\)?`,
  [R`\(r = R_\oplus + h = 6371 + 400 = 6771\) km`,"r = 400 km","r = 6371 km","r = 6371 − 400 = 5971 km"],0,
- R`\(r = R_\oplus + h\), measured from Earth's center. The slides flag forgetting this as a very common astronautics mistake. The course uses the mean radius, 6371 km.`,"Astro Pt1 s.9");
+ R`\(r = R_\oplus + h\), measured from Earth's center. The slides flag forgetting this as a very common astronautics mistake. The course uses the mean radius, 6371 km.`,"Astro Pt1 s.10");
 mc("orb","concept",0,R`Which is <b>not</b> an assumption of the restricted two-body problem?`,
  ["The orbit is circular","M ≫ m, so the satellite is treated as a point mass","Both bodies are spherically symmetric","Gravity is the only force acting"],0,
  R`The two-body problem assumes spherically symmetric bodies and no other forces. "Restricted" adds \(M \gg m\). Any conic is allowed.`,"Astro notes p.2");
@@ -146,7 +146,7 @@ mc("orb","equation",0,R`Given \(r_p\) and \(r_a\), which expression gives eccent
  R`From \(r_p = a(1-e)\) and \(r_a = a(1+e)\).`,"Astro notes p.4");
 mc("orb","concept",0,R`Why does a satellite move fastest at perigee?`,
  ["Angular momentum is conserved (Kepler's 2nd law), so smaller r means larger v","Drag is lowest at perigee","Gravity does no work near perigee","Thrusters fire at perigee"],0,
- R`Equal areas in equal times: \(H = r v_\perp\) is constant, so the speed is highest at the smallest radius.`,"Astro Pt1 s.6");
+ R`Equal areas in equal times: \(H = r v_\perp\) is constant, so the speed is highest at the smallest radius.`,"Astro Pt1 s.7");
 mc("orb","concept",1,R`A spacecraft at 500 km altitude has a 10.4 km/s velocity perpendicular to its radius (HW 2, problem 1). What kind of trajectory is it on?`,
  [R`Elliptical: \(v_c \approx 7.6 < 10.4 < v_{esc} \approx 10.8\) km/s, with this point as perigee`,"Hyperbolic, because 10.4 km/s exceeds circular speed","Circular","Parabolic"],0,
  R`\(r = 6871\) km gives \(v_c = \sqrt{\mu/r} \approx 7.62\) and \(v_{esc} \approx 10.77\) km/s. It is faster than circular but slower than escape, so the orbit is elliptical and this point is perigee.`,"HW2 #1");
@@ -155,7 +155,7 @@ mc("orb","fact",0,R`What is Earth's gravitational parameter \(\mu_\oplus\)?`,
  R`\(\mu = GM\). Earth: \(398{,}600\ \mathrm{km^3/s^2}\) (≈ \(4\times10^5\) for estimates). Sun: \(1.327\times10^{11}\ \mathrm{km^3/s^2}\) (HW 4).`,"Astro notes p.2; HW4");
 mc("orb","fact",0,R`Kepler's 3rd law states that…`,
  ["The square of the period is proportional to the cube of the semi-major axis","Orbits are ellipses with the Sun at one focus","Equal areas are swept in equal times","Every action has an equal and opposite reaction"],0,
- R`1st: ellipse, Sun at a focus (1609). 2nd: equal areas in equal times (1609). 3rd: \(P^2\propto a^3\) (1619).`,"Astro Pt1 s.5");
+ R`1st: ellipse, Sun at a focus (1609). 2nd: equal areas in equal times (1609). 3rd: \(P^2\propto a^3\) (1619).`,"Astro Pt1 s.7");
 mc("orb","concept",0,R`Two orbits share the same semi-major axis but one is circular and one is highly eccentric. Which statement is true?`,
  ["They have the same specific energy and the same period","The eccentric orbit has more energy","The circular orbit has a longer period","They have the same angular momentum"],0,
  R`\(\varepsilon = -\mu/2a\) and \(P = 2\pi\sqrt{a^3/\mu}\) depend only on \(a\). Angular momentum differs: \(H = \sqrt{\mu p}\) and \(p = a(1-e^2)\).`,"Astro notes p.3, p.7");
@@ -216,7 +216,7 @@ mc("cov","fact",1,R`Which altitude ranges does the course use for LEO, MEO and G
  R`Altitudes above the surface: LEO ≈ 200–1200, MEO ≈ 1200–35,790, GSO/GEO ≈ 35,790 km. GEO radius ≈ 42,164 km (the notes round to 42,238).`,"Astro Pt2 s.9; Midterm Review s.30");
 mc("cov","fact",1,R`What are the approximate orbital periods of LEO, MEO and GEO?`,
  ["≈ 1.5–2 hr, ≈ 12 hr, ≈ 24 hr","≈ 30 min, ≈ 6 hr, ≈ 12 hr","≈ 3 hr, ≈ 24 hr, ≈ 48 hr","≈ 90 min for all, since period depends on mass"],0,
- R`From the "Orbit Types and Space Env. Considerations" slide.`,"Space Env s.7");
+ R`From the "Orbit Types and Space Env. Considerations" slide.`,"Space Env s.6");
 mc("cov","fact",0,R`Which describes the GPS constellation?`,
  ["24 satellites in 6 planes (4 per plane) at ≈ 20,200 km and 55°","66 satellites at ≈ 780 km","3 satellites in GEO","24 satellites at 1200 km, polar"],0,
  R`GPS is MEO: 6 planes, 4 satellites each, 20,200 km, 55° inclination. Iridium is LEO (66 active, ≈ 780 km). Three GEO satellites can cover most of the Earth.`,"Astro Pt2 s.16");
@@ -245,7 +245,7 @@ mc("cov","fact",0,R`At what "critical inclinations" does J₂ produce no apsidal
  ["63.4° and 116.6°","0° and 90°","28.5° and 51.6°","45° and 135°"],0,
  R`\(\dot\omega \propto 2 - \tfrac52\sin^2 i = 0\) gives \(\sin^2 i = 0.8\), so \(i = 63.4°\) or \(116.6°\). Molniya (HEO) orbits use this to keep apogee over the northern hemisphere.`,"Astro Pt2 s.24");
 mc("cov","concept",0,R`What causes the J₂ perturbation?`,
- ["Earth's oblateness: the equatorial bulge (\(R_{eq} - R_{pole} \approx 21.4\) km)","The Moon's gravity","Atmospheric drag","Solar radiation pressure"],0,
+ [R`Earth's oblateness: the equatorial bulge (\(R_{eq} - R_{pole} \approx 21.4\) km)`,"The Moon's gravity","Atmospheric drag","Solar radiation pressure"],0,
  R`J₂ is the second zonal harmonic, \(1.08263\times10^{-3}\), from the oblate spheroid shape. \(\Delta R \approx 21.4/6371 \approx 0.3\%\).`,"Astro Pt2 s.20–21");
 mc("cov","concept",0,R`What is the J₂ nodal regression for a polar orbit (\(i = 90°\))?`,
  ["Zero, because cos 90° = 0","Maximum westward","Maximum eastward","It equals the SSO rate"],0,
@@ -293,7 +293,7 @@ mc("rkt","concept",0,R`According to the \(m_p/m_f\) vs \(c\) curves, what happen
  R`The curves flatten. The slide's takeaway: much higher than 4500 s is not particularly attractive.`,"Space Propulsion s.21");
 mc("rkt","fact",0,R`Which effective exhaust velocities are given for the chemical options?`,
  ["Cold gas ≈ 0.69, monoprop ≈ 2.26, solid ≈ 2.94, biprop ≈ 3.92 km/s","Cold gas ≈ 3, solid ≈ 1, biprop ≈ 10 km/s","All ≈ 30 km/s","Cold gas ≈ 2.9, monoprop ≈ 0.7 km/s"],0,
- R`These correspond to Isp ≈ 70, 230, 300 and 400 s, from the "Decreasing Propellant Mass (Isp)" slide.`,"Space Propulsion s.14");
+ R`These correspond to Isp ≈ 70, 230, 300 and 400 s, from the "Decreasing Propellant Mass (Isp)" slide.`,"Space Propulsion s.13");
 mc("rkt","equation",1,R`In serial staging, \(m_{0,1} = m_{0,2} + m_{i,1} + m_{p,1}\). What is \(m_{0,2}\)?`,
  ["The full initial mass of stage 2 and everything above it, including payload","Stage 2 propellant only","The payload only","Stage 1 dry mass"],0,
  R`To stage 1, the whole upper stack is payload. Then \(m_{f,1} = m_{0,1} - m_{p,1}\), and stage 2 starts fresh after dropping \(m_{i,1}\).`,"Staging notes; Midterm Review s.16");
@@ -381,7 +381,7 @@ mc("ep","equation",0,R`Which expression is the total thruster efficiency?`,
  R`Jet power over electrical input power. For a fixed \(\eta_T\) and \(P_E\), raising \(c\) lowers thrust: \(F = 2\eta_T P_E/c\).`,"Propulsion notes p.8; HW3 #4");
 mc("ep","concept",1,R`Chemical propulsion is "energy limited." What is EP limited by?`,
  ["The available electric power, which limits thrust","Propellant chemical energy","Nozzle area","Launch vehicle volume"],0,
- R`Chemical: \(v_{ex}\) is limited by the propellant's energy density (c ≈ 3–4 km/s). EP: energy comes from the power system, so \(c\) can be 5–100+ km/s, but thrust is limited by power (≈ 0.1 to hundreds of mN).`,"Space Propulsion s.17");
+ R`Chemical: \(v_{ex}\) is limited by the propellant's energy density (c ≈ 3–4 km/s). EP: energy comes from the power system, so \(c\) can be 5–100+ km/s, but thrust is limited by power (≈ 0.1 to hundreds of mN).`,"Space Propulsion s.16");
 mc("ep","fact",1,R`Which is listed as a <b>disadvantage</b> of electric propulsion?`,
  ["Higher inert mass, because an external power system is required","Low Isp","High disturbance forces","No precision"],0,
  R`EP pros: high Isp (low propellant mass), high precision, low disturbance. Cons: low thrust and longer trips, higher inert mass for power, typically less heritage.`,"Midterm Review s.32");
@@ -487,10 +487,10 @@ mc("ipl","concept",1,R`On a porkchop plot, what separates a Type I from a Type I
  R`The transfer angle is the true-anomaly sweep. The 180° "ridge" between them is a costly region (it needs large plane changes).`,"Midterm Review s.23–25");
 mc("ipl","concept",1,R`What do porkchop plots show, and why are they useful?`,
  ["C3 (and arrival v∞) contours vs departure and arrival dates, for finding launch windows and trading C3 against transfer time","Δv vs altitude for plane changes","Rocket mass ratio vs Isp","Radiation dose vs shielding"],0,
- R`Built from many Lambert's-problem solutions. Given a launch vehicle's max C3, the window is the range of departure dates under that contour.`,"Interplanetary s.25, s.43–50; HW4 #2");
+ R`Built from many Lambert's-problem solutions. Given a launch vehicle's max C3, the window is the range of departure dates under that contour.`,"Interplanetary s.16, s.25, s.44–58; HW4 #2");
 mc("ipl","concept",0,R`In the 2005 example, the launch vehicle can provide C3 = 21 km²/s². How do you find the launch window?`,
  ["Find the span of departure dates where the required C3 (for an acceptable arrival) is ≤ 21","Pick the single minimum-C3 date","Use the synodic period","Divide 21 by v∞"],0,
- R`The slide shows about a 23–24 day window for each transfer type.`,"Interplanetary s.49");
+ R`The slide shows about a 23–24 day window for each transfer type.`,"Interplanetary s.57");
 mc("ipl","concept",1,R`In a gravity assist, what stays the same and what changes?`,
  ["Speed relative to the planet is the same in and out, but direction turns. Speed relative to the Sun can change","Speed relative to the Sun is unchanged","The spacecraft burns propellant at closest approach","Speed relative to the planet doubles"],0,
  R`\(\vec v_{rel} = \vec v_{ti} - \vec v_p\). The hyperbola turns \(\vec v_{rel}\), and \(\vec v_{tf} = \vec v_{rel,out} + \vec v_p\). Energy is exchanged with the planet (angular momentum is "stolen" or added).`,"Interplanetary s.18–19; Midterm Review s.27");
@@ -499,13 +499,13 @@ mc("ipl","fact",0,R`Per the solar-system "subway map," what are the ΔV legs for
  R`Subway maps are simplistic but good initial estimates. HW 4 #4 uses the 1.44 km/s Mars capture leg.`,"Interplanetary s.15");
 mc("ipl","concept",0,R`What is Lambert's problem?`,
  [R`Given two position vectors and the time of flight between them, find the departure and arrival velocities`,"Find the SOI radius","Find the C3 given v∞","Find the stage Isp"],0,
- R`Given \(t_0, \vec R_0, t_f, \vec R_f\), find \(\vec V_0, \vec V_f\) (two-body). Solved for many date pairs, it produces porkchop plots.`,"Interplanetary s.37");
+ R`Given \(t_0, \vec R_0, t_f, \vec R_f\), find \(\vec V_0, \vec V_f\) (two-body). Solved for many date pairs, it produces porkchop plots.`,"Interplanetary s.44");
 mc("ipl","concept",1,R`Which is true about the three-body problem and Lagrange points?`,
  ["There is no general closed-form solution. Lagrange points are limited special solutions where the forces balance in the rotating frame (JWST is at Sun–Earth L2)","Patched conics solve it exactly","Spheres of influence are real physical boundaries","There are 3 Lagrange points"],0,
  R`Spheres of influence don't really exist, but they are a good approximation. There are 5 Lagrange points (L1–L5). The Interplanetary Transport Network uses n-body dynamics for low-Δv transfers (e.g., Genesis, ≈ 450 m/s total).`,"Interplanetary s.22–23; Midterm Review s.34");
 mc("ipl","concept",1,R`A landing mission at Mars uses EDL. What does each phase use?`,
  ["Entry: aeroshell/aerocapture. Descent: parachutes and/or retrorockets. Landing: retrorockets or airbags","Entry: retrorockets. Descent: airbags. Landing: parachute","Only an orbit insertion burn","Entry: ion engine. Descent: solar sail"],0,
- R`Orbiters instead convert the hyperbolic approach into an orbit with a capture burn (MOI). MER used an aeroshell, a parachute with Zylon bridle, RAD motors, and airbags with a tetrahedral lander.`,"Midterm Review s.28; Interplanetary s.24, s.37–39");
+ R`Orbiters instead convert the hyperbolic approach into an orbit with a capture burn (MOI). MER used an aeroshell, a parachute with Zylon bridle, RAD motors, and airbags with a tetrahedral lander.`,"Midterm Review s.28; Interplanetary s.24, s.34–38");
 mc("ipl","concept",0,R`Why did MER Rover B launch on the more powerful Delta II 7925-H instead of the 7925?`,
  ["It launched later in the window and needed more energy (C3) to rendezvous with Mars","It was heavier because it carried a helicopter","It went to a different planet","The 7925 was retired"],0,
  R`The slide asks "Why? Rendezvous." A later departure date needs a higher C3 on the porkchop plot.`,"Interplanetary s.30");
@@ -549,7 +549,191 @@ mc("mis","fact",0,R`Which are given as examples of EP missions?`,
  R`From the EP missions slides.`,"Missions s.9–16");
 mc("mis","fact",0,R`How much propellant did Cassini carry at launch?`,
  ["≈ 3132 kg (3000 kg biprop, 132 kg monoprop)","≈ 300 kg","≈ 30,000 kg","≈ 1,000 kg xenon"],0,
- R`Dry mass 2113 kg (Cassini) plus 320 kg (Huygens), with an 879 W RTG. It made a 450 m/s plane change in 1998.`,"Missions s.30");
+ R`Dry mass 2113 kg (Cassini) plus 320 kg (Huygens), with an 879 W RTG. It made a 450 m/s plane change in 1998.`,"Missions s.29");
+
+
+/* ---------- Harder answer choices (v2): correct answer first, distractors matched in form ---------- */
+const CH = {
+"env-1":["Micrometeoroid and debris impacts","Solar radiation pressure","Gravity gradient","Magnetic field interaction"],
+"env-2":["Solar radiation torque","Gravity-gradient torque","Magnetic torque","Aerodynamic torque"],
+"env-3":["Aerodynamic torque","Gravity-gradient torque","Magnetic torque","Solar radiation torque"],
+"env-4":["Trapped Van Allen belt radiation","Solar particle radiation","Atmospheric drag","Atomic oxygen erosion"],
+"env-5":["Solar radiation","Trapped Van Allen belt radiation","Galactic cosmic rays","Atmospheric drag"],
+"env-6":["100 km","80 km","120 km","160 km"],
+"env-7":[R`\(\approx 1358\ \mathrm{W/m^2}\)`,R`\(\approx 1000\ \mathrm{W/m^2}\)`,R`\(\approx 1580\ \mathrm{W/m^2}\)`,R`\(\approx 4.5\times10^{-6}\ \mathrm{W/m^2}\)`],
+"env-8":[R`\(q = 1\), so \(F_s = 2P_sA_\perp\)`,R`\(q = 1\), so \(F_s = P_sA_\perp\)`,R`\(q = 0\), so \(F_s = 2P_sA_\perp\)`,R`\(q = -1\), so \(F_s = 2P_sA_\perp\)`],
+"env-9":["≈ 43% of the 1 AU value","≈ 66% of the 1 AU value","≈ 81% of the 1 AU value","≈ 28% of the 1 AU value"],
+"env-10":[R`Constant temperature in the layer, so \(H = kT/(Mg)\) is constant`,R`Constant pressure in the layer, so density scales as \(1/T\)`,R`Gravity falling off as \(1/r^2\), so density decays with altitude`,R`Constant mean free path, so collisions set the decay rate`],
+"env-11":[R`\(H = \dfrac{kT}{Mg}\)`,R`\(H = \dfrac{Mg}{kT}\)`,R`\(H = \dfrac{kT}{M}\)`,R`\(H = \dfrac{2kT}{Mg}\)`],
+"env-12":[R`\(\beta = 200\ \mathrm{kg/m^2}\): drag deceleration scales as \(1/\beta\)`,R`\(\beta = 20\ \mathrm{kg/m^2}\): a lower \(\beta\) means a smaller drag force`,R`\(\beta = 200\ \mathrm{kg/m^2}\): a higher \(\beta\) means a lower \(C_D\)`,"Neither: at equal altitude, lifetime depends only on solar activity"],
+"env-13":["≈ 500 km","≈ 300 km","≈ 700 km","≈ 1000 km"],
+"env-14":["The thermosphere heats and expands, raising density and drag at a given altitude","The thermosphere heats and contracts, lowering density and drag at a given altitude","Density is unchanged, but solar wind pressure adds a drag-like force","Density is unchanged, but ionization raises the drag coefficient"],
+"env-15":["300; 600","200; 400","400; 800","500; 1000"],
+"env-16":["Drag acting at the center of pressure, offset from the center of mass","Drag acting at the center of mass, offset from the geometric center","Different drag coefficients on the ram and wake faces, even with c_p = c_g","Co-rotating atmosphere pushing sideways on the spacecraft"],
+"env-17":[R`Velocity relative to the rotating atmosphere, \(\dot{\vec r} - \vec\omega_\oplus\times\vec r\)`,R`Inertial (ECI) velocity \(\dot{\vec r}\), since drag acts in the inertial frame`,R`Ground-relative velocity of the sub-satellite point`,R`Circular orbital speed \(\sqrt{\mu/r}\) at that altitude`],
+"env-18":["Energetic electrons, ≈ 0.1–10 MeV","Energetic protons, ≈ 10–100 MeV","Energetic protons, above 100 MeV","Heavy ions, ≈ 1–10 GeV"],
+"env-19":["Energetic solar-wind particles trapped by Earth's magnetic field","Upper-atmosphere gas ionized by solar UV and held by gravity","Galactic cosmic rays reflected inward by the magnetopause","Auroral particles accelerated upward along polar field lines"],
+"env-20":["F2 (≈ 200–400 km)","F1 (≈ 140–200 km)","E (≈ 95–140 km)","D (≈ 70–90 km)"],
+"env-21":["Atomic oxygen erosion, radio signal effects, and surface charging","Trapped protons above 100 MeV, single-event upsets, and total dose","Gravity-gradient torques, J₂ drift, and orbit decay","Micrometeoroid craters, debris strikes, and spallation"],
+"env-22":["An insulator or an isolated conductor","A grounded conductor","A semiconductor bonded to structure","A poor dielectric connected to ground"],
+"env-23":["Van Allen belts, the Sun (wind and flares), galactic cosmic rays","Van Allen belts, the ionosphere, galactic cosmic rays","Van Allen belts, the Sun (wind and flares), Earth's albedo","The Sun (wind and flares), the ionosphere, galactic cosmic rays"],
+"env-24":["Solar radio flux at 10.7 cm, used as a proxy for solar activity","Solar EUV flux at 10.7 nm, which directly heats the thermosphere","A geomagnetic index of auroral activity, sampled every 10.7 hours","Thermosphere density at 107 km, used to scale drag models"],
+"env-25":["Meteorite","Meteor","Meteoroid","Bolide"],
+"env-26":["Spaced multi-layer bumpers (a stuffed Whipple shield)","A thick monolithic aluminum wall around each module","Multi-layer insulation blankets alone","Water and polyethylene layers, as used for radiation"],
+"orb-27":[R`Hyperbolic: \(e > 1\), \(a < 0\)`,R`Hyperbolic: \(e > 1\), \(a > 0\)`,R`Parabolic: \(e = 1\), \(a \to \infty\)`,R`Elliptical: \(0 < e < 1\), \(a < 0\)`],
+"orb-28":[R`\(|PE| = |KE|\), \(\varepsilon = 0\)`,R`\(|PE| = 2|KE|\), \(\varepsilon < 0\)`,R`\(|PE| < |KE|\), \(\varepsilon > 0\)`,R`\(|PE| > |KE|\), \(\varepsilon < 0\)`],
+"orb-29":[R`\(\varepsilon = \tfrac{v^2}{2} - \tfrac{\mu}{r}\) and \(\varepsilon = -\tfrac{\mu}{2a}\)`,R`\(\varepsilon = \tfrac{v^2}{2} - \tfrac{\mu}{r}\) and \(\varepsilon = -\tfrac{\mu}{a}\)`,R`\(\varepsilon = \tfrac{v^2}{2} + \tfrac{\mu}{r}\) and \(\varepsilon = -\tfrac{\mu}{2a}\)`,R`\(\varepsilon = \tfrac{v^2}{2} - \tfrac{\mu}{2r}\) and \(\varepsilon = -\tfrac{\mu}{2a}\)`],
+"orb-30":[R`\(a = (r_p+r_a)/2\), then vis-viva at \(r = r_p\)`,R`\(a = (r_p+r_a)/2\), then vis-viva at \(r = a\)`,R`\(a = r_a - r_p\), then vis-viva at \(r = r_p\)`,R`\(v = \sqrt{\mu/r_p}\), since velocity is horizontal there`],
+"orb-31":[R`\(a \to \infty\), so \(\varepsilon = 0\)`,R`\(a = r\), so \(\varepsilon = -\mu/2r\)`,R`\(a = 2r\), so \(\varepsilon = -\mu/4r\)`,R`\(r \to \infty\), so \(\varepsilon = -\mu/2a\)`],
+"orb-32":[R`\(v_{esc} = \sqrt{2}\,v_c\)`,R`\(v_{esc} = 2\,v_c\)`,R`\(v_{esc} = \sqrt{3}\,v_c\)`,R`\(v_{esc} = 1.5\,v_c\)`],
+"orb-33":[R`Only \(a\)`,R`\(a\) and \(e\)`,R`Only \(r_p\)`,R`\(a\) and \(i\)`],
+"orb-34":["r = 6771 km","r = 400 km","r = 6371 km","r = 5971 km"],
+"orb-35":["The orbit is circular or elliptical","M ≫ m, so the satellite is a point mass","Both bodies are spherically symmetric","Gravity is the only force acting"],
+"orb-36":[R`\(\vec H = \vec r\times\vec v\) is constant, fixing the plane's normal`,R`Specific energy \(\varepsilon\) is constant, fixing the plane's normal`,R`The eccentricity vector is fixed, so motion can't leave its plane`,R`Equal areas in equal times can only be swept in one plane`],
+"orb-37":["Flight path angle from the local horizontal; zero at periapsis and apoapsis","Flight path angle from the radius vector; zero at periapsis and apoapsis","Flight path angle from the local horizontal; zero only at periapsis","True anomaly; zero at periapsis"],
+"orb-38":[R`Semi-latus rectum: \(p = H^2/\mu = a(1-e^2)\)`,R`Periapsis radius: \(p = H^2/\mu = a(1-e)\)`,R`Semi-minor axis: \(p = a\sqrt{1-e^2}\)`,R`Semi-latus rectum: \(p = H/\mu = a(1+e)\)`],
+"orb-39":[R`\(e = \dfrac{r_a - r_p}{r_a + r_p}\)`,R`\(e = \dfrac{r_a - r_p}{a}\)`,R`\(e = 1 - \dfrac{r_p}{r_a}\)`,R`\(e = \dfrac{r_a + r_p}{2r_a}\)`],
+"orb-40":["Angular momentum is constant, so a smaller r requires a larger v","Specific energy is constant, so a smaller r requires a smaller |PE|","Gravity is strongest there, so the satellite has just been accelerated most","Areal velocity is constant, so a smaller r requires a smaller v"],
+"orb-41":["Elliptical, with this point as perigee","Elliptical, with this point as apogee","Hyperbolic, since 10.4 km/s exceeds circular speed by over 30%","Circular, since the velocity is perpendicular to the radius"],
+"orb-42":[R`\(398{,}600\ \mathrm{km^3/s^2}\)`,R`\(398{,}600\ \mathrm{m^3/s^2}\)`,R`\(3.986\times10^{14}\ \mathrm{km^3/s^2}\)`,R`\(1.327\times10^{11}\ \mathrm{km^3/s^2}\)`],
+"orb-43":[R`\(P^2 \propto a^3\)`,R`\(P^3 \propto a^2\)`,R`\(P \propto a^3\)`,R`\(P^2 \propto r_p^3\)`],
+"orb-44":["Same energy and same period, different angular momentum","Same energy and same angular momentum, different period","Same period and same angular momentum, different energy","Same energy, but the eccentric orbit has the longer period"],
+"man-45":[R`\(\Delta v_1 = \sqrt{\mu\left(\tfrac{2}{r_1}-\tfrac{1}{a_{tr}}\right)} - \sqrt{\tfrac{\mu}{r_1}}\)`,R`\(\Delta v_1 = \sqrt{\mu\left(\tfrac{2}{r_1}-\tfrac{1}{r_2}\right)} - \sqrt{\tfrac{\mu}{r_1}}\)`,R`\(\Delta v_1 = \sqrt{\mu\left(\tfrac{2}{r_2}-\tfrac{1}{a_{tr}}\right)} - \sqrt{\tfrac{\mu}{r_1}}\)`,R`\(\Delta v_1 = \sqrt{\tfrac{\mu}{r_2}} - \sqrt{\tfrac{\mu}{r_1}}\)`],
+"man-46":["Separate burns let you combine, split or re-assign them (e.g., add a plane change)","The lumped form is only exact when r₂/r₁ < 11.94, where Hohmann is optimal","The lumped form double-counts the perigee speed of the transfer ellipse","The lumped form ignores that burn 2 happens at a lower orbital speed"],
+"man-47":[R`\(\pi\sqrt{a_{tr}^3/\mu}\)`,R`\(2\pi\sqrt{a_{tr}^3/\mu}\)`,R`\(\pi\sqrt{r_2^3/\mu}\)`,R`\(\tfrac{\pi}{2}\sqrt{a_{tr}^3/\mu}\)`],
+"man-48":["Low-thrust spiral between circular orbits, with an optional plane change","Two-impulse transfer between circular orbits, with a plane change","Low-thrust spiral between elliptical orbits of any eccentricity","Single-impulse plane change at the ascending node"],
+"man-49":[R`\(|v_{c1} - v_{c2}|\)`,R`\(\tfrac{\pi}{2}|v_{c1} - v_{c2}|\)`,R`\(\sqrt{v_{c1}^2 + v_{c2}^2}\)`,"The Hohmann total Δv"],
+"man-50":["Radians","Degrees","Either: the π/2 converts degrees","Fractions of a full revolution"],
+"man-51":["Much higher Isp means far less propellant despite the larger Δv","Spirals avoid gravity losses, so the real propellant cost is lower","Spirals arrive sooner because the thrust never stops","Spiral Δv drops below Hohmann once the Oberth effect is included"],
+"man-52":[R`\(2v\sin(\Delta\alpha/2)\)`,R`\(v\,\Delta\alpha\)`,R`\(2v\sin\Delta\alpha\)`,R`\(2v\cos(\Delta\alpha/2)\)`],
+"man-53":["Where speed is lowest, such as apogee","Where speed is highest, such as perigee (Oberth effect)","At the ascending node of the lowest orbit","Anywhere: the cost depends only on Δα"],
+"man-54":["≈ 130 m/s for 1° vs ≈ 50 m/s for +100 km","≈ 50 m/s for 1° vs ≈ 130 m/s for +100 km","≈ 130 m/s for 1° vs ≈ 130 m/s for +100 km","≈ 13 m/s for 1° vs ≈ 50 m/s for +100 km"],
+"man-55":["When both i and Ω change, to get the true angle between the planes","When only i changes, to convert Δi into the burn angle","When ω changes, to rotate the line of apsides","When the orbit is elliptical, to correct for flight path angle"],
+"man-56":["One vector Δv is shorter than the sum of two separate burns","Burning at apogee adds the Oberth effect to the plane change","Circularizing first raises the speed, making the plane change cheaper","A combined burn avoids the gravity loss of a second burn"],
+"man-57":[R`\(\mathrm{TOF} = c\,m_p/F\)`,R`\(\mathrm{TOF} = m_p/(cF)\)`,R`\(\mathrm{TOF} = F\,m_p/c\)`,R`\(\mathrm{TOF} = \tfrac12 P_{tr}\)`],
+"man-58":["≈ 5 hours vs ≈ 200 days","≈ 5 hours vs ≈ 20 days","≈ 2 days vs ≈ 200 days","≈ 12 hours vs ≈ 2 years"],
+"cov-59":[R`RAAN, \(\Omega\)`,R`Argument of periapsis, \(\omega\)`,R`Inclination, \(i\)`,R`True anomaly, \(\theta\)`],
+"cov-60":[R`\(a, e, \theta\)`,R`\(a, e, \omega\)`,R`\(i, \Omega, \omega\)`,R`\(a, i, \theta\)`],
+"cov-61":["LEO ≈ 200–1200 km; MEO ≈ 1200–35,790 km; GEO ≈ 35,790 km","LEO ≈ 200–1200 km; MEO ≈ 1200–20,200 km; GEO ≈ 42,164 km","LEO ≈ 100–1000 km; MEO ≈ 1000–20,200 km; GEO ≈ 35,790 km","LEO ≈ 200–2000 km; MEO ≈ 2000–35,790 km; GEO ≈ 42,164 km"],
+"cov-62":["≈ 1.5–2 hr, ≈ 12 hr, ≈ 24 hr","≈ 1.5–2 hr, ≈ 6 hr, ≈ 24 hr","≈ 3–4 hr, ≈ 12 hr, ≈ 24 hr","≈ 1.5–2 hr, ≈ 18 hr, ≈ 48 hr"],
+"cov-63":["24 satellites, 6 planes × 4, ≈ 20,200 km, 55°","24 satellites, 3 planes × 8, ≈ 20,200 km, 55°","24 satellites, 6 planes × 4, ≈ 35,786 km, 55°","30 satellites, 3 planes × 10, ≈ 23,200 km, 56°"],
+"cov-64":["66 at ≈ 780 km","77 at ≈ 780 km","66 at ≈ 1200 km","48 at ≈ 1400 km"],
+"cov-65":["Same 1-sidereal-day period; GEO also has i = 0 and e = 0","Same altitude; GSO also has i = 0 and e = 0","Same period; GSO is the one with i = 0 and e = 0","GEO has a 24 h solar-day period; GSO a 23 h 56 m sidereal one"],
+"cov-66":["Minimum elevation angle above the ground station's horizon","Nadir angle from the satellite to the target","Half-angle of the sensor's field of view","Earth central angle out to the target"],
+"cov-67":["Fraction of Earth's surface instantaneously in view","Fraction of each orbit spent over the target","Fraction of each orbit spent in Earth's shadow","Fraction of the sensor's field of view filled by Earth"],
+"cov-68":["Coverage shrinks (smaller λ and F)","Coverage grows (larger λ and F)","λ shrinks but F grows","No change: λ depends only on altitude"],
+"cov-69":[R`It needs \(\dot\Omega = +0.9856°/\text{day}\), which requires \(\cos i < 0\)`,R`It needs \(\dot\Omega = -0.9856°/\text{day}\), which requires \(\cos i < 0\)`,R`It needs \(\dot\Omega = 0\), which only happens near \(i = 90°\)`,R`It needs \(\dot\omega = 0\), which happens at \(i = 116.6°\)`],
+"cov-70":["+0.9856°/day (eastward)","−0.9856°/day (westward)","+360°/day (one revolution per day)","0°/day (fixed plane)"],
+"cov-71":["63.4° and 116.6°","54.7° and 125.3°","45° and 135°","28.5° and 151.5°"],
+"cov-72":["Earth's equatorial bulge (oblateness)","The Moon's tidal pull on the satellite","Distortion of Earth's magnetic field by the solar wind","Non-uniform density in the upper atmosphere"],
+"cov-73":["Zero, because cos 90° = 0","Maximum westward","Maximum eastward","Equal to the sun-synchronous rate"],
+"cov-74":["Non-spherical Earth, drag, third-body gravity, solar radiation pressure","Non-spherical Earth, drag, third-body gravity, relativistic time dilation","Drag, third-body gravity, solar radiation pressure, Earth's magnetic field","Non-spherical Earth, drag, Coriolis force, solar radiation pressure"],
+"cov-75":["Celestial coordinates","Earth-fixed coordinates","Roll-pitch-yaw (orbit-referenced) coordinates","Launch-site topocentric coordinates"],
+"cov-76":["Mean 6371; equatorial 6378; polar 6356 km","Mean 6378; equatorial 6371; polar 6356 km","Mean 6371; equatorial 6378; polar 6336 km","Mean 6371; equatorial 6400; polar 6356 km"],
+"cov-77":["Park: temporary orbit (often LEO) for checkout or waiting. Transfer: intermediate orbit such as GTO","Park: intermediate orbit such as GTO. Transfer: temporary LEO for checkout","Park: the final operational slot. Transfer: the launch ascent trajectory","Park: a graveyard disposal orbit. Transfer: a phasing orbit"],
+"rkt-78":[R`\(P_e = P_\infty\) (perfect expansion)`,R`\(P_\infty = 0\) (vacuum)`,R`\(P_e = 0\) (full expansion to vacuum)`,R`\(A_e = A_t\) (no divergent section)`],
+"rkt-79":["Isp is defined per Earth weight of propellant, so g₀ is a fixed constant","Engines are tested on Earth, so Isp already includes Earth's gravity loss","Isp should use local g; g₀ is just a convenient approximation","g₀ cancels in the rocket equation, so any g gives the same Δv"],
+"rkt-80":["Impulse per unit weight of propellant","Impulse per unit mass of the vehicle","Thrust per unit weight of the vehicle","Total impulse over a full-duration burn"],
+"rkt-81":["Chem 50–450 s; electrothermal 300–1200 s; electrostatic/EM 1500–4000 s","Chem 50–450 s; electrothermal 1500–4000 s; electrostatic/EM 300–1200 s","Chem 200–600 s; electrothermal 300–1200 s; electrostatic/EM 1500–4000 s","Chem 50–450 s; electrothermal 450–800 s; electrostatic/EM 4000–10,000 s"],
+"rkt-82":["No gravity or drag during the burn, and constant c","No gravity or drag, and constant thrust-to-mass ratio","Constant thrust and constant propellant flow rate","Constant c, and the burn happens at periapsis"],
+"rkt-83":[R`\(m_p = m_f\left(e^{\Delta V/c}-1\right)\)`,R`\(m_p = m_f\,e^{\Delta V/c}\)`,R`\(m_p = m_f\left(1-e^{-\Delta V/c}\right)\)`,R`\(m_p = m_0\left(1-e^{-\Delta V/c}\right)\)`],
+"rkt-84":["Raise tank pressure to raise the mass flow rate","Increase Isp with a higher-performance propellant","Use staging to drop inert mass along the way","Use a flyby to lower the ΔV requirement"],
+"rkt-85":[R`Payload plus inert mass, \(m_{pay}+m_i\)`,R`Payload only, \(m_{pay}\)`,R`Inert mass only, \(m_i\)`,R`Payload plus propellant, \(m_{pay}+m_p\)`],
+"rkt-86":[R`Diminishing returns: \(m_p/m_f\) is already small, while power needs grow`,R`\(m_p/m_f\) keeps falling exponentially, so Isp should be maximized`,R`\(m_p/m_f\) starts rising again because thrust drops`,"The rocket equation stops applying above ≈ 4500 s"],
+"rkt-87":["Cold gas 0.69, monoprop 2.26, solid 2.94, biprop 3.92 km/s","Cold gas 0.69, monoprop 2.94, solid 2.26, biprop 3.92 km/s","Cold gas 2.26, monoprop 0.69, solid 2.94, biprop 3.92 km/s","Cold gas 0.69, monoprop 2.26, solid 3.92, biprop 2.94 km/s"],
+"rkt-88":["Stage 2's full initial mass: its propellant, its inert mass, and the payload","Stage 2's propellant and inert mass, without the payload","Stage 2's inert mass and the payload, without its propellant","Stage 1's burnout mass minus the payload"],
+"rkt-89":["No: dry mass and stage Isp are unchanged","Yes: the thrust changed, so the ΔV segment restarts","Yes: Isp drops when the engines throttle down","Only for solid boosters, whose thrust profile changes"],
+"rkt-90":["Yes: the stage Isp changes to the core-only value","No: dry mass hasn't changed until separation","No: only separation events count as staging","Yes: thrust drops, which changes the mass ratio"],
+"rkt-91":[R`Flow-weighted: \(\sum \dot m I_{sp}/\sum\dot m \approx 289\) s`,R`Thrust-weighted: \(\sum F I_{sp}/\sum F \approx 317\) s`,R`Engine average: \((250+250+500)/3 \approx 333\) s`,R`Type average: \((250+500)/2 = 375\) s`],
+"rkt-92":["Later burns no longer carry the empty tanks and engines","Each stage's engine runs at a higher chamber pressure","Upper stages benefit from weaker gravity at altitude","Separation adds momentum to the remaining vehicle"],
+"rkt-93":["≈ 90%","≈ 75%","≈ 60%","≈ 98%"],
+"rkt-94":["Parallel: boosters burn alongside the core. Serial: stages fire one after another","Parallel: stages fire one after another. Serial: boosters burn alongside the core","Parallel: two stages share one engine. Serial: each has its own engine","Parallel: payloads ride side by side. Serial: payloads are stacked"],
+"rkt-95":[R`\(I = F_T t\), in N·s`,R`\(I = F_T t\), in N/s`,R`\(I = F_T/t\), in N/s`,R`\(I = \dot m c\), in N`],
+"rkt-96":["LEO ≥ 9.5 km/s; GEO from a 30° parking orbit ≈ 4.2 km/s","LEO ≈ 7.8 km/s; GEO from a 30° parking orbit ≈ 4.2 km/s","LEO ≥ 9.5 km/s; GEO from a 30° parking orbit ≈ 2.5 km/s","LEO ≈ 11.2 km/s; GEO from a 30° parking orbit ≈ 3.4 km/s"],
+"chem-97":[R`Raise \(T_c\) and lower \(\bar M\)`,R`Raise \(T_c\) and raise \(\bar M\)`,R`Lower \(T_c\) and lower \(\bar M\)`,R`Raise \(P_c\) and lower \(\gamma\)`],
+"chem-98":["Combustion chamber performance, independent of the nozzle","Nozzle performance, independent of the chamber","Overall engine performance, combining chamber and nozzle","Exhaust velocity at the nozzle exit plane"],
+"chem-99":[R`\(c\) rises 3%`,R`\(c\) rises ≈ 1.5% (as \(\sqrt{1.03}\))`,R`\(c\) is unchanged, since \(c^*\) is unchanged`,R`\(c\) rises 3%, and \(m_p\) falls by 3%`],
+"chem-100":["Mach 1 at the throat","Mach 1 at the nozzle exit","Subsonic flow throughout the nozzle","Perfect expansion at the exit"],
+"chem-101":["Cold gas, liquid (mono/biprop), solid, hybrid","Cold gas, liquid (mono/biprop), solid, resistojet","Liquid (mono/biprop), solid, hybrid, nuclear thermal","Cold gas, liquid (mono/biprop), solid, arcjet"],
+"chem-102":["Simple, but low Isp","High Isp, but complex plumbing","High thrust, but toxic exhaust","Throttleable, but not storable"],
+"chem-103":["Higher Isp and throttle/restart, but complex plumbing and storage limits","Lower Isp, but simpler with fewer leak paths","Higher density and storability, but no restart","Higher Isp and denser propellant, but no throttling"],
+"chem-104":["Simple, dense and storable for long periods","Throttleable and restartable on command","Highest Isp of the chemical options","Clean, non-toxic exhaust products"],
+"chem-105":[R`Chamber pressure: \(r = aP_c^n\), \(n \approx 0.3\)–\(0.8\)`,R`Ambient pressure: \(r = aP_\infty^n\), \(n \approx 0.3\)–\(0.8\)`,R`Chamber pressure: \(r = aP_c^n\), \(n \approx 1.2\)–\(2\)`,R`Throat area: \(r = aA_t^n\), \(n \approx 0.3\)–\(0.8\)`],
+"chem-106":["Solid fuel with a liquid oxidizer","Liquid fuel with a solid oxidizer","Solid first stage with a liquid upper stage","Monopropellant with a cold-gas pressurant"],
+"chem-107":[R`\(\sigma = \dfrac{Pr}{2t}\)`,R`\(\sigma = \dfrac{Pr}{t}\)`,R`\(\sigma = \dfrac{Pr}{4t}\)`,R`\(\sigma = \dfrac{2Pr}{t}\)`],
+"chem-108":["Hydrazine (N₂H₄)","Monomethylhydrazine (MMH)","Nitrogen tetroxide (N₂O₄)","Kerosene (RP-1)"],
+"ep-109":[R`Energy: the ion's potential energy \(eV_B\) becomes \(\tfrac12mv^2\)`,R`Momentum: \(mv\) equals \(eV_B\) times the transit time`,R`Lorentz force: \(q(\vec v\times\vec B)\) accelerates the ion`,R`Thermal: the ion temperature \(eV_B/k\) sets \(v\)`],
+"ep-110":[R`\(F_T \propto \sqrt{V_B}\)`,R`\(F_T \propto V_B\)`,R`\(F_T \propto V_B^2\)`,R`\(F_T \propto 1/\sqrt{V_B}\)`],
+"ep-111":[R`\(\dot m_i/\dot m_p\)`,R`\(\dot m_p/\dot m_i\)`,R`\(\dot m_{loss}/\dot m_p\)`,R`\(P_B/P_E\)`],
+"ep-112":[R`\(J_B = \dfrac{q}{m}\dot m_p\eta_m\)`,R`\(J_B = \dfrac{q}{m}\dfrac{\dot m_p}{\eta_m}\)`,R`\(J_B = \dfrac{m}{q}\dot m_p\eta_m\)`,R`\(J_B = q\,\dot m_p\eta_m\)`],
+"ep-113":["Fraction of electrical input power that goes into the beam","Fraction of beam power that becomes jet kinetic power","Fraction of propellant flow that leaves as ions","Fraction of input power that becomes jet power, ½ṁc²"],
+"ep-114":[R`\(\eta_T = \dfrac{\tfrac12\dot m_pc^2}{P_E}\)`,R`\(\eta_T = \dfrac{\dot m_pc^2}{P_E}\)`,R`\(\eta_T = \dfrac{J_BV_B}{P_E}\)`,R`\(\eta_T = \dfrac{\dot m_i}{\dot m_p}\)`],
+"ep-115":["The available electric power, which caps thrust","The propellant's chemical energy, which caps exhaust speed","The ion mass, which caps exhaust speed","Grid erosion, which caps total impulse"],
+"ep-116":["Higher inert mass for the power system","Lower Isp than chemical systems","Higher disturbance forces on the spacecraft","Lower pointing precision during burns"],
+"ep-117":["Magnetic confinement and electromagnetic propulsion","Electrostatic ion acceleration in gridded thrusters","Ionizing the neutral propellant","Neutralizing the ion beam"],
+"ep-118":[R`It rises by \(\sqrt{131.3/83.8}\approx 1.25\)`,R`It falls by \(\sqrt{131.3/83.8}\approx 1.25\)`,R`It rises by \(131.3/83.8 \approx 1.57\)`,"It stays the same, since V_B is the same"],
+"ep-119":["Magnetized electrons sustain the Hall current and E-field; ions exit nearly unaffected","Magnetized ions spiral longer and gain more energy before exiting","Unmagnetized electrons reach the anode quickly, raising efficiency","Both species are magnetized, keeping the plume collimated"],
+"ep-120":["v₊ ≈ 38.3 km/s, Isp ≈ 3900 s","v₊ ≈ 27.1 km/s, Isp ≈ 2760 s","v₊ ≈ 54.2 km/s, Isp ≈ 5520 s","v₊ ≈ 38.3 km/s, Isp ≈ 3830 s"],
+"ep-121":["First Hall-thruster EP used beyond geosynchronous orbit","First gridded ion engine used for primary propulsion","First EP spacecraft to orbit two different bodies","First solar-electric mission to rendezvous with an asteroid"],
+"ep-122":["Electrostatic","Electrothermal","Electromagnetic","Pulsed plasma"],
+"ep-123":["Krypton, then argon","Argon, then krypton","Krypton, then iodine","Iodine, then argon"],
+"lau-124":[R`\(i = \delta\): the minimum inclination from that site`,R`\(i = \delta\): the maximum inclination from that site`,R`\(i = 90° - \delta\): the complement of the latitude`,R`\(i = 0\): an equatorial orbit from any latitude`],
+"lau-125":["No: i ≥ 28.5°, so it needs a plane change in orbit","Yes, with an azimuth near 118° (southeast)","Yes, by launching due east","No: KSC can only reach polar orbits"],
+"lau-126":[R`\(\omega_\oplus R_\oplus\cos\delta\sin A\); largest due east at the equator (≈ 0.46 km/s)`,R`\(\omega_\oplus R_\oplus\cos\delta\sin A\); largest due east at high latitude`,R`\(\omega_\oplus R_\oplus\sin\delta\sin A\); largest due east at the poles`,R`\(\omega_\oplus R_\oplus\cos\delta\cos A\); largest due north at the equator`],
+"lau-127":[R`\(V_{orbit} = \Delta V_{prop} - \Delta V_g - \Delta V_D + \Delta V_{\omega\oplus}\)`,R`\(V_{orbit} = \Delta V_{prop} - \Delta V_g - \Delta V_D - \Delta V_{\omega\oplus}\)`,R`\(V_{orbit} = \Delta V_{prop} + \Delta V_g - \Delta V_D + \Delta V_{\omega\oplus}\)`,R`\(V_{orbit} = \Delta V_{prop} - \Delta V_g + \Delta V_D + \Delta V_{\omega\oplus}\)`],
+"lau-128":["Climb steeply through the thick air, then pitch over to cut gravity losses","Pitch over early to cut drag, then climb steeply to cut gravity losses","Fly vertically the whole way to minimize the path length","Turn horizontal right away to maximize the Earth-rotation boost"],
+"lau-129":["Gravity loss ≈ 1222 m/s","Steering loss ≈ 358 m/s","Drag loss ≈ 107 m/s","Earth rotation ≈ 395 m/s"],
+"lau-130":["≈ 180 kg to LEO; ≈ 725 kg to GEO","≈ 45 kg to LEO; ≈ 180 kg to GEO","≈ 90 kg to LEO; ≈ 360 kg to GEO","≈ 725 kg to LEO; ≈ 1800 kg to GEO"],
+"lau-131":["Range safety limits each site's azimuths, so neither covers all inclinations","Vandenberg's lower latitude gives it a bigger Earth-rotation boost","KSC can't reach orbits above about 1000 km within its azimuth range","Two sites keep launch cadence up when one has bad weather"],
+"lau-132":["The launch time, which sets where the launch meridian is","The launch azimuth, which sets the heading at liftoff","The site latitude, which sets the minimum inclination","The burnout altitude and flight path angle"],
+"lau-133":["Capability (ΔV, mass to LEO or C3), loads and frequencies, geometry and fairing","Capability (ΔV, mass to LEO or C3), cost, and launch schedule","Loads and frequencies, radiation environment, and fairing size","Capability (ΔV, mass to LEO or C3), thermal environment, range safety"],
+"lau-134":["Keeping the spacecraft's fundamental frequencies above the launch vehicle's minimums","Keeping the spacecraft's fundamental frequencies below the launch vehicle's maximums","Sizing the separation springs for payload release","Estimating acoustic levels inside the fairing"],
+"lau-135":["Just before each stage burns out","At liftoff, when thrust first exceeds weight","At Max Q, when the aerodynamic load peaks","Just after each staging event"],
+"lau-136":["Maximum dynamic pressure","Maximum acceleration","Maximum aerodynamic heating","Maximum thrust"],
+"lau-137":["F9 22,800 kg, $74M; FH 63,800 kg, $97M","F9 15,600 kg, $62M; FH 63,800 kg, $97M","F9 22,800 kg, $74M; FH 45,000 kg, $150M","F9 8,300 kg, $74M; FH 26,700 kg, $97M"],
+"lau-138":["Protecting the payload through the atmosphere; jettisoned once above it","Protecting the payload until orbit insertion; then kept as a sunshield","Carrying upper-stage propellant around the payload","Damping launch vibration; it stays attached until separation"],
+"ipl-139":["Hyperbola → ellipse → hyperbola","Ellipse → hyperbola → ellipse","Parabola → ellipse → parabola","Hyperbola → parabola → hyperbola"],
+"ipl-140":[R`\(C_3 = v_\infty^2 = v_{bo}^2 - v_{esc}^2\)`,R`\(C_3 = v_\infty = v_{bo} - v_{esc}\)`,R`\(C_3 = v_\infty^2 = v_{bo}^2 + v_{esc}^2\)`,R`\(C_3 = v_\infty^2 = v_{bo}^2 - v_c^2\)`],
+"ipl-141":["Relative to the planet; launch vehicles are rated by max C3 for a payload mass","Relative to the Sun; launch vehicles are rated by max C3 for a payload mass","Relative to the planet; it equals the Δv of the escape burn","Relative to the Sun; it is the heliocentric transfer energy"],
+"ipl-142":[R`Vector sum: \(\vec v_\infty + \vec v_{planet}\)`,R`Scalar sum: \(|\vec v_\infty| + |\vec v_{planet}|\)`,R`Vector difference: \(\vec v_{planet} - \vec v_\infty\)`,R`Quadrature: \(\sqrt{v_\infty^2 + v_{planet}^2}\)`],
+"ipl-143":[R`\(r_{SOI} \approx a\left(\dfrac{\mu_p}{\mu_s}\right)^{2/5}\)`,R`\(r_{SOI} \approx a\left(\dfrac{\mu_p}{\mu_s}\right)^{1/3}\)`,R`\(r_{SOI} \approx a\left(\dfrac{\mu_p}{\mu_s}\right)^{1/2}\)`,R`\(r_{SOI} \approx a\,\dfrac{\mu_p}{\mu_s}\)`],
+"ipl-144":["The same Δv adds more energy when applied at higher speed","The same Δv adds more energy when applied at lower speed","A flyby adds energy without any propellant","A plane change is cheaper at higher speed"],
+"ipl-145":[R`\(v_\infty = \Delta v\sqrt{\dfrac{2v_{esc}}{\Delta v}+1}\)`,R`\(v_\infty = \Delta v\sqrt{\dfrac{v_{esc}}{\Delta v}+1}\)`,R`\(v_\infty = \Delta v\sqrt{\dfrac{2v_{esc}}{\Delta v}-1}\)`,R`\(v_\infty = \sqrt{v_{esc}^2+\Delta v^2}\)`],
+"ipl-146":[R`\(\phi = \pi - 2\pi\,t_{xfer}/T_2\)`,R`\(\phi = 2\pi\,t_{xfer}/T_2 - \pi\)`,R`\(\phi = \pi - 2\pi\,t_{xfer}/T_1\)`,R`\(\phi = 2\pi\,t_{xfer}/T_2\)`],
+"ipl-147":["Every ≈ 780 days (the synodic period)","Every 687 days (Mars's orbital period)","Every ≈ 520 days (twice the Hohmann transfer time)","Every ≈ 1052 days (the sum of the two periods)"],
+"ipl-148":["Transfer angle below vs above 180°","Transfer time below vs above 180 days","Departure C3 below vs above 15 km²/s²","Prograde vs retrograde heliocentric transfer"],
+"ipl-149":["C3 and arrival v∞ contours vs departure and arrival dates","Δv contours vs launch azimuth and latitude","C3 contours vs payload mass and launch vehicle","Transfer-time contours vs C3 and arrival v∞"],
+"ipl-150":["The span of departure dates where the required C3 ≤ 21 km²/s²","The span of departure dates where the required C3 ≥ 21 km²/s²","The span of arrival dates where arrival v∞ ≤ √21 km/s","The minimum-C3 date, plus or minus one synodic period"],
+"ipl-151":["Planet-relative speed is unchanged and its direction turns; Sun-relative speed can change","Sun-relative speed is unchanged and its direction turns; planet-relative speed can change","Both speeds stay the same; only the direction changes","Planet-relative speed grows by up to twice the planet's speed"],
+"ipl-152":["9.4 + 3.21 + 1.06 + 1.44 ≈ 15.1 km/s","9.4 + 3.21 + 2.94 + 1.44 ≈ 17.0 km/s","7.8 + 3.21 + 1.06 + 1.44 ≈ 13.5 km/s","9.4 + 1.44 + 1.06 + 3.21 ≈ 15.1 km/s, capture at Earth"],
+"ipl-153":["Given two positions and the flight time, find the velocities","Given a position and velocity, find the position after a flight time","Given two velocities and the flight time, find the positions","Given C3 and arrival v∞, find the departure and arrival dates"],
+"ipl-154":["No general closed-form solution; Lagrange points are special equilibrium solutions","Patched conics solve it exactly once SOIs are defined","A closed-form solution exists when one mass is negligible","There are three Lagrange points, all on the line through the two bodies"],
+"ipl-155":["Entry: aeroshell. Descent: parachute and retrorockets. Landing: retrorockets or airbags","Entry: retrorockets. Descent: aeroshell. Landing: parachute and airbags","Entry: parachute. Descent: aeroshell and retrorockets. Landing: airbags","Entry: aeroshell. Descent: airbags. Landing: parachute and retrorockets"],
+"ipl-156":["It departed later in the window, when the required C3 was higher","It was heavier because it carried extra science instruments","It departed earlier, before the minimum-C3 date","It targeted a higher-latitude landing site"],
+"ipl-157":["About 1%","About 5%","About 10%","About 0.1%"],
+"ipl-158":["The planet's position relative to the Sun, with velocity v_planet + v∞","The planet's position and the planet's velocity","Its own position one SOI radius out, with velocity v∞ only","The planet's velocity, with position one SOI radius ahead"],
+"mis-159":["Voyager","Pioneer 10","New Horizons","Cassini"],
+"mis-160":["Galileo","Juno","Cassini","Ulysses"],
+"mis-161":["Reaction wheels, with magnetic torquers to desaturate them","Reaction wheels, with cold-gas thrusters to desaturate them","Control moment gyros, with magnetic torquers for slewing","Magnetic torquers, with reaction wheels as a backup"],
+"mis-162":["Sun–Earth L2","Sun–Earth L1","Earth–Moon L2","Geostationary orbit"],
+"mis-163":["Kinetic impact on Dimorphos to change its orbit around Didymos","Kinetic impact on Didymos to change its orbit around the Sun","Sample return from Dimorphos to study its composition","Gravity-tractor test that slowly nudged Dimorphos"],
+"mis-164":["Repeated Venus gravity assists","A single Jupiter gravity assist","Repeated Earth gravity assists","A solar-electric spiral inward"],
+"mis-165":["Direct launch to hyperbolic escape; Phobos sample return","Direct launch to hyperbolic escape; Deimos sample return","LEO parking orbit, then EP spiral; Phobos sample return","Direct launch to hyperbolic escape; Phobos lander, no return"],
+"mis-166":["VVEJGA, then repeated Titan flybys","VEEGA, then repeated Titan flybys","VVEJGA, then repeated Enceladus flybys","EJGA, then repeated Titan flybys"],
+"mis-167":["To avoid contaminating Enceladus and Titan (planetary protection)","To collect atmospheric data while the RTG still had power","Because no stable disposal orbit around Saturn existed","To keep its debris from damaging Saturn's rings"],
+"mis-168":["DAWN, ARM, Starlink, Lunar Gateway PPE","DAWN, Cassini, Starlink, Lunar Gateway PPE","Voyager, ARM, Starlink, Lunar Gateway PPE","DAWN, Galileo, Starlink, JWST"],
+"mis-169":["≈ 3132 kg (3000 kg biprop, 132 kg monoprop)","≈ 3132 kg (3000 kg monoprop, 132 kg biprop)","≈ 2113 kg (2000 kg biprop, 113 kg monoprop)","≈ 1566 kg (1500 kg biprop, 66 kg monoprop)"]
+};
+for (const q of MC) { const c = CH[q.id]; if (c) { q.ch = c; q.a = 0; } }
+const QFIX = {
+  "man-45": R`For a Hohmann transfer from circular \(r_1\) to circular \(r_2\), with \(a_{tr} = (r_1+r_2)/2\), which expression is the first burn?`
+};
+const EXFIX = {
+  "rkt-83": R`From \(m_0/m_f = e^{\Delta V/c}\) and \(m_0 = m_f + m_p\). The \(m_0(1-e^{-\Delta V/c})\) form is also correct, but it needs \(m_0\), which you don't have here.`,
+  "env-7": R`About 1358 W/m², ranging from 1321 to 1413 over the year. About 1000 W/m² is what reaches the ground on a clear day. \(4.5\times10^{-6}\) is the solar <i>pressure</i> in N/m² (\(I_s/c\)), not a flux.`,
+  "man-45": R`Burn 1 is at perigee of the transfer ellipse, so use vis-viva at \(r_1\) with the transfer ellipse's \(a_{tr}\), then subtract the circular speed. Burn 2 at apogee: \(\Delta v_2 = |v_{c2} - v_a|\).`
+};
+for (const q of MC) { if (QFIX[q.id]) q.q = QFIX[q.id]; if (EXFIX[q.id]) q.ex = EXFIX[q.id]; }
 
 /* ---------------- Flashcards (memorization) ---------------- */
 const CARDS = [];
@@ -583,7 +767,7 @@ card("man",0,"Cost of 1° plane change in LEO","≈ 130 m/s (vs ≈ 50 m/s to ra
 card("man",0,"LEO→GEO time: Hohmann vs spiral","≈ 5 hours vs ≈ 200 days");
 card("cov",1,"Altitude bands","LEO ≈ 200–1200 km; MEO ≈ 1200–35,790 km; GEO ≈ 35,790 km (r ≈ 42,164 km)");
 card("cov",1,"Periods","LEO ≈ 1.5–2 hr; MEO ≈ 12 hr; GEO ≈ 24 hr");
-card("cov",0,"Earth radii","Mean 6371 km; equatorial 6378 km; polar 6356 km; \(R_{eq} - R_{pole} \approx 21.4\) km (0.3%)");
+card("cov",0,"Earth radii",R`Mean 6371 km; equatorial 6378 km; polar 6356 km; \(R_{eq} - R_{pole} \approx 21.4\) km (0.3%)`);
 card("cov",0,"GPS constellation","24 satellites, 6 planes × 4, 20,200 km, 55° inclination");
 card("cov",0,"Iridium","66 active satellites at ≈ 780 km (named for element 77)");
 card("cov",0,"J₂ value",R`\(J_2 = 1.08263\times10^{-3}\)`);
