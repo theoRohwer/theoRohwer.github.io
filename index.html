@@ -133,6 +133,14 @@ main{min-width:0;display:flex;flex-direction:column;gap:16px}
 .psol{padding-left:34px;display:flex;flex-direction:column;gap:6px;min-width:0}
 .psol .ans{font-size:15px}
 @media (max-width:520px){ .part .ansrow,.psol{padding-left:0} }
+.satext{width:100%;min-height:120px;resize:vertical;background:var(--field);border:1px solid var(--rule);border-radius:4px;padding:10px 12px;font:16px/1.5 var(--f-body);box-sizing:border-box}
+.kp{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.kp label{display:grid;grid-template-columns:20px minmax(0,1fr);gap:8px;align-items:start;cursor:pointer;font-size:15.5px;line-height:1.45}
+.kp input{margin-top:4px;accent-color:var(--ok-fg)}
+.kp span{min-width:0;overflow-x:auto;overflow-y:hidden}
+.model{margin:0;max-width:70ch;overflow-x:auto;overflow-y:hidden}
+.grade{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.grade .btn[aria-pressed="true"]{background:var(--accent);color:var(--panel)}
 /* exam */
 .examopts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .opt{text-align:left;background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:18px;cursor:pointer;display:flex;flex-direction:column;gap:6px}
@@ -255,6 +263,7 @@ details.rev .body{padding:0 14px 14px;display:flex;flex-direction:column;gap:8px
     <button class="tab" role="tab" data-view="practice" id="tab-practice">Practice</button>
     <button class="tab" role="tab" data-view="cards" id="tab-cards">Flashcards</button>
     <button class="tab" role="tab" data-view="problems" id="tab-problems">Problems</button>
+    <button class="tab" role="tab" data-view="short" id="tab-short">Short answer</button>
     <button class="tab" role="tab" data-view="exam" id="tab-exam">Mock exam</button>
     <button class="tab" role="tab" data-view="equations" id="tab-equations">Equation sheet</button>
     <a class="tab res" href="orbit-lab.html">Orbit Angle Lab <span>3D tool ↗</span></a>
@@ -266,6 +275,7 @@ details.rev .body{padding:0 14px 14px;display:flex;flex-direction:column;gap:8px
     <section id="v-practice" hidden></section>
     <section id="v-cards" hidden></section>
     <section id="v-problems" hidden></section>
+    <section id="v-short" hidden></section>
     <section id="v-exam" hidden></section>
     <section id="v-equations" hidden></section>
   </main>
@@ -304,6 +314,7 @@ window.MathJax = {
 <script src="bank.js"></script>
 <script src="deep.js"></script>
 <script src="problems.js"></script>
+<script src="short.js"></script>
 <script>
 (function(){
 "use strict";
@@ -431,16 +442,17 @@ function renderSide(){
   $("#mr").checked = !!S.mr;
   renderFlagBox();
 }
-function flagCounts(){ const c = { mc: 0, card: 0, num: 0 }; for (const k in S.flags) c[S.flags[k].kind] = (c[S.flags[k].kind] || 0) + 1; return c; }
+function flagCounts(){ const c = { mc: 0, card: 0, num: 0, sa: 0 }; for (const k in S.flags) c[S.flags[k].kind] = (c[S.flags[k].kind] || 0) + 1; return c; }
 function renderFlagBox(){
   const box = $("#flagbox"); if (!box) return; const n = Object.keys(S.flags).length, c = flagCounts();
   if (!n) { box.innerHTML = '<p class="note">Flag any question, card or problem you want to come back to or ask about. It shows up here, and flagged items come up more often.</p>'; return; }
-  const parts = [c.mc && `${c.mc} question${c.mc > 1 ? "s" : ""}`, c.card && `${c.card} card${c.card > 1 ? "s" : ""}`, c.num && `${c.num} problem type${c.num > 1 ? "s" : ""}`].filter(Boolean).join(", ");
+  const parts = [c.mc && `${c.mc} question${c.mc > 1 ? "s" : ""}`, c.card && `${c.card} card${c.card > 1 ? "s" : ""}`, c.num && `${c.num} problem${c.num > 1 ? "s" : ""}`, c.sa && `${c.sa} short answer${c.sa > 1 ? "s" : ""}`].filter(Boolean).join(", ");
   box.innerHTML = `<p class="note" style="color:var(--ink-2)"><span class="flagged-mark">●</span> ${n} flagged: ${parts}</p>
-    <div class="row" style="gap:6px">${c.mc ? '<button class="chip" id="fl-review">Review flagged questions</button>' : ""}${c.card ? '<button class="chip" id="fl-cards">Flagged cards</button>' : ""}${c.num ? '<button class="chip" id="fl-probs">Flagged problems</button>' : ""}<button class="chip" id="fl-copy">Copy list for office hours</button></div><div id="fl-out"></div>`;
+    <div class="row" style="gap:6px">${c.mc ? '<button class="chip" id="fl-review">Review flagged questions</button>' : ""}${c.card ? '<button class="chip" id="fl-cards">Flagged cards</button>' : ""}${c.num ? '<button class="chip" id="fl-probs">Flagged problems</button>' : ""}${c.sa ? '<button class="chip" id="fl-sa">Flagged short answers</button>' : ""}<button class="chip" id="fl-copy">Copy list for office hours</button></div><div id="fl-out"></div>`;
   const rv = $("#fl-review"); if (rv) rv.onclick = () => { P.mode = "flagged"; P.recent = []; P.cur = null; setView("practice", true); };
   const fc = $("#fl-cards"); if (fc) fc.onclick = () => { FC.flagOnly = true; setView("cards", true); RENDER.cards(true); };
   const fp = $("#fl-probs"); if (fp) fp.onclick = () => { PR.flagOnly = true; PR.cur = null; setView("problems", true); };
+  const fs = $("#fl-sa"); if (fs) fs.onclick = () => { SAQ.flagOnly = true; SAQ.cur = null; setView("short", true); };
   $("#fl-copy").onclick = copyFlagged;
 }
 const plain = s => String(s).replace(/<\/?[a-z][^>]*>/gi, "").replace(/\\\(|\\\)/g, "").replace(/\s+/g, " ").trim();
@@ -449,6 +461,7 @@ function copyFlagged(){
   Object.keys(S.flags).sort((a, b) => S.flags[a].at - S.flags[b].at).forEach((id, i) => {
     const f = S.flags[id]; let txt = "";
     if (f.kind === "mc") { const q = MC.find(x => x.id === id); if (!q) return; txt = `${i + 1}. [${TN[q.t].name}] ${plain(q.q)}\n   Answer: ${plain(q.ch[q.a])}\n   Source: ${srcItems(q.src).map(x => x.name + (x.loc ? ", " + x.loc : "")).join("; ")}`; }
+    else if (f.kind === "sa") { const q = (window.AAE_SA || []).find(x => x.id === id); if (!q) return; txt = `${i + 1}. [${TN[q.t].name}] Short answer: ${plain(q.q)}\n   Source: ${srcItems(q.src).map(x => x.name + (x.loc ? ", " + x.loc : "")).join("; ")}`; }
     else if (f.kind === "card") { const c = CARDS.find(x => x.id === id) || EQCARDS.find(x => x.id === id); if (!c) return; txt = `${i + 1}. [${TN[c.t].name}] Card: ${plain(c.eq ? c.eq.name : c.front)}`; }
     else { const g = NUM.find(x => x.id === id) || (window.AAE_HW || []).find(x => x.id === id); if (!g) return; const r = NUMREF[g.id] || (g.eq ? { eq: g.eq, src: g.src } : null); txt = `${i + 1}. [${TN[g.t].name}] Problem type: ${g.title}${r ? `\n   Source: ${srcItems(r.src).map(x => x.name + (x.loc ? ", " + x.loc : "")).join("; ")}` : ""}`; }
     if (f.note) txt += `\n   My question: ${f.note}`;
@@ -473,7 +486,7 @@ function flashNote(msg){ const p = document.querySelector(".side .note"); if (!p
 
 /* ---------- views ---------- */
 const RENDER = {};
-const VIEWS = ["practice", "cards", "problems", "exam", "equations"];
+const VIEWS = ["practice", "cards", "problems", "short", "exam", "equations"];
 let view = null;
 function setView(v, push){
   if (!VIEWS.includes(v)) v = "practice";
@@ -673,6 +686,61 @@ function checkPart(i){
   keepScroll(() => RENDER.problems(false));
   if (ok) { const nxt = PR.cur.p.parts.findIndex((_, k) => k > i && !(PR.res[k] && PR.res[k].ok)); focusPart(nxt >= 0 ? nxt : i); } else focusPart(i);
 }
+
+/* ----- Short answer ----- */
+const SAB = window.AAE_SA || [];
+const SAQ = { cur: null, text: "", revealed: false, ticks: new Set(), graded: null, recent: [], flagOnly: false, n: 0, got: 0 };
+const saPool = () => SAQ.flagOnly ? SAB.filter(q => isFlagged(q.id)) : SAB.filter(q => selected(q.t));
+function nextSA(){
+  const pool = saPool(); const q = pickWeighted(pool, SAQ.recent);
+  SAQ.cur = q; SAQ.text = ""; SAQ.revealed = false; SAQ.ticks = new Set(); SAQ.graded = null; if (!q) return;
+  SAQ.recent.push(q.id); while (SAQ.recent.length > Math.min(12, Math.floor(pool.length * 0.6))) SAQ.recent.shift();
+}
+RENDER.short = function(reset){
+  const el = $("#v-short");
+  if (reset || !SAQ.cur || (!SAQ.flagOnly && !selected(SAQ.cur.t))) nextSA();
+  const pool = saPool();
+  let body;
+  if (!S.sel.length && !SAQ.flagOnly) body = noTopics;
+  else if (!SAQ.cur) body = `<p class="empty">${SAQ.flagOnly ? "No flagged short-answer questions yet." : "No short-answer questions in these topics."}</p>`;
+  else {
+    const q = SAQ.cur, k = SAQ.ticks.size, n = q.points.length;
+    const hint = k === n ? "You covered every key point." : k >= Math.ceil(n * 0.6) ? `You covered ${k} of ${n} key points: a solid answer.` : `You covered ${k} of ${n} key points.`;
+    body = `<div class="card">
+      <div class="meta"><span>${esc(TN[q.t].name)}</span><span>Short answer</span>${q.mr ? '<span class="mr">● On midterm review</span>' : ""}</div>
+      <div class="qtext">${q.q}</div>
+      <label class="lbl" for="sa-text">Your answer</label>
+      <textarea class="satext" id="sa-text" placeholder="Write it as you would on the exam: the reasoning, the relevant equation, and a number if it helps.">${esc(SAQ.text)}</textarea>
+      ${SAQ.revealed ? `
+        <div class="dsec"><span class="lbl">Key points a grader looks for: tick the ones you covered</span>
+          <ul class="kp">${q.points.map((pt, i) => `<li><label><input type="checkbox" data-kp="${i}" ${SAQ.ticks.has(i) ? "checked" : ""}><span>${pt}</span></label></li>`).join("")}</ul>
+          <span class="kbd" id="sa-hint">${hint}</span></div>
+        <div class="dsec"><span class="lbl">Model answer</span><p class="model">${q.model}</p></div>
+        <div class="dsec"><span class="lbl">Where it's covered</span>${whereHTML(q.src)}</div>
+        <div class="grade"><span class="lbl">How did you do?</span>
+          <button class="btn ghost" data-grade="got" aria-pressed="${SAQ.graded === "got"}">Got it</button>
+          <button class="btn ghost" data-grade="partly" aria-pressed="${SAQ.graded === "partly"}">Partly</button>
+          <button class="btn ghost" data-grade="missed" aria-pressed="${SAQ.graded === "missed"}">Missed it</button></div>` : ""}
+      ${noteHTML(q.id)}
+      <div class="foot"><div class="tools">${flagBtn(q.id, q.t, "sa")}</div>
+        <div class="row">${SAQ.revealed ? "" : '<button class="btn" id="sa-reveal">Reveal model answer</button>'}<button class="btn ${SAQ.revealed ? "" : "ghost"}" id="sa-next">Next question</button></div></div>
+    </div>`;
+  }
+  el.innerHTML = `${sheet("Short answer", `${pool.length} questions${SAQ.n ? ` · session <b>${SAQ.got}/${SAQ.n}</b> got it` : ""}`)}
+    <div class="head"><h2>Short-answer questions</h2><p>Harder "explain why" questions that combine several ideas, like the long questions on the exam. Write your answer first, then reveal the model answer, tick the key points you covered, and grade yourself. "Partly" and "Missed it" bring the question back sooner.</p></div>
+    <div class="row"><span class="lbl">Show</span><button class="chip" aria-pressed="${!SAQ.flagOnly}" data-saf="0">All selected topics</button><button class="chip" aria-pressed="${SAQ.flagOnly}" data-saf="1">Flagged only (${flagCounts().sa})</button></div>${body}`;
+  el.querySelectorAll("[data-saf]").forEach(b => b.onclick = () => { SAQ.flagOnly = b.dataset.saf === "1"; SAQ.recent = []; RENDER.short(true); });
+  const ta = $("#sa-text"); if (ta) ta.oninput = () => { SAQ.text = ta.value; };
+  const rv = $("#sa-reveal"); if (rv) rv.onclick = () => { SAQ.revealed = true; keepScroll(() => RENDER.short(false)); };
+  el.querySelectorAll("[data-kp]").forEach(c => c.onchange = () => { const i = +c.dataset.kp; if (c.checked) SAQ.ticks.add(i); else SAQ.ticks.delete(i);
+    const q = SAQ.cur, k = SAQ.ticks.size, n = q.points.length, h = $("#sa-hint"); if (h) h.textContent = k === n ? "You covered every key point." : k >= Math.ceil(n * 0.6) ? `You covered ${k} of ${n} key points: a solid answer.` : `You covered ${k} of ${n} key points.`; });
+  el.querySelectorAll("[data-grade]").forEach(b => b.onclick = () => {
+    const g = b.dataset.grade, first = SAQ.graded == null; SAQ.graded = g;
+    if (first) { SAQ.n++; if (g === "got") SAQ.got++; rec(SAQ.cur.id, SAQ.cur.t, g === "got"); }
+    keepScroll(() => RENDER.short(false)); });
+  const nx = $("#sa-next"); if (nx) nx.onclick = () => { nextSA(); RENDER.short(false); window.scrollTo({ top: 0 }); const t = $("#sa-text"); if (t) t.focus({ preventScroll: true }); };
+  typeset(el);
+};
 
 /* ----- Mock exam ----- */
 const EX = { state: "setup", items: [], i: 0, ans: [], end: 0, tick: null, dur: 0, started: 0, confirm: false };
