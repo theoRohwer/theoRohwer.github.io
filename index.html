@@ -118,6 +118,21 @@ main{min-width:0;display:flex;flex-direction:column;gap:16px}
 .steps{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;overflow-x:auto}
 .steps li{padding-left:4px}
 
+.ptitle{margin:0;font:700 21px/1.2 var(--f-display);letter-spacing:.01em;text-wrap:balance}
+.parts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.part{border:1px solid var(--rule);border-left:3px solid var(--rule);border-radius:5px;background:var(--field);padding:10px 12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.part.ok{border-left-color:var(--ok-fg)} .part.bad{border-left-color:var(--bad-fg)}
+.ptop{display:grid;grid-template-columns:28px minmax(0,1fr);gap:6px;align-items:baseline}
+.plbl{font:500 13px/1 var(--f-mono);color:var(--muted)}
+.pq{min-width:0;overflow-x:auto;overflow-y:hidden}
+.part .ansrow{padding-left:34px}
+.part .ansrow input{width:150px}
+.btn.sm{padding:7px 11px;font-size:13px}
+.pv{font:600 13px/1 var(--f-display);letter-spacing:.08em;text-transform:uppercase}
+.pv.ok{color:var(--ok-fg)} .pv.bad{color:var(--bad-fg)}
+.psol{padding-left:34px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.psol .ans{font-size:15px}
+@media (max-width:520px){ .part .ansrow,.psol{padding-left:0} }
 /* exam */
 .examopts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .opt{text-align:left;background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:18px;cursor:pointer;display:flex;flex-direction:column;gap:6px}
@@ -288,6 +303,7 @@ window.MathJax = {
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js" async></script>
 <script src="bank.js"></script>
 <script src="deep.js"></script>
+<script src="problems.js"></script>
 <script>
 (function(){
 "use strict";
@@ -372,7 +388,7 @@ function deepHTML(q){
     <div class="dsec"><span class="lbl">Where it's covered</span>${whereHTML(q.src)}</div></div>`;
 }
 function numDeepHTML(g){
-  const r = NUMREF[g.id]; if (!r) return "";
+  const r = NUMREF[g.id] || (g.eq ? { eq: g.eq, src: g.src } : null); if (!r) return "";
   return `<div class="deep">${eqMiniHTML(r.eq)}<div class="dsec"><span class="lbl">Where it's covered</span>${whereHTML(r.src)}</div></div>`;
 }
 const FLAG_SVG = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 15V1.5M3 2h9l-2 3.5 2 3.5H3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
@@ -434,7 +450,7 @@ function copyFlagged(){
     const f = S.flags[id]; let txt = "";
     if (f.kind === "mc") { const q = MC.find(x => x.id === id); if (!q) return; txt = `${i + 1}. [${TN[q.t].name}] ${plain(q.q)}\n   Answer: ${plain(q.ch[q.a])}\n   Source: ${srcItems(q.src).map(x => x.name + (x.loc ? ", " + x.loc : "")).join("; ")}`; }
     else if (f.kind === "card") { const c = CARDS.find(x => x.id === id) || EQCARDS.find(x => x.id === id); if (!c) return; txt = `${i + 1}. [${TN[c.t].name}] Card: ${plain(c.eq ? c.eq.name : c.front)}`; }
-    else { const g = NUM.find(x => x.id === id); if (!g) return; const r = NUMREF[g.id]; txt = `${i + 1}. [${TN[g.t].name}] Problem type: ${g.title}${r ? `\n   Source: ${srcItems(r.src).map(x => x.name + (x.loc ? ", " + x.loc : "")).join("; ")}` : ""}`; }
+    else { const g = NUM.find(x => x.id === id) || (window.AAE_HW || []).find(x => x.id === id); if (!g) return; const r = NUMREF[g.id] || (g.eq ? { eq: g.eq, src: g.src } : null); txt = `${i + 1}. [${TN[g.t].name}] Problem type: ${g.title}${r ? `\n   Source: ${srcItems(r.src).map(x => x.name + (x.loc ? ", " + x.loc : "")).join("; ")}` : ""}`; }
     if (f.note) txt += `\n   My question: ${f.note}`;
     lines.push(txt, "");
   });
@@ -588,51 +604,74 @@ function sizeFlash(){
   fit(); mjq.then(fit);
 }
 
-/* ----- Problems ----- */
-const PR = { cur: null, done: false, showSol: false, val: "", result: null, recent: [], flagOnly: false };
-function newProblem(){
-  const pool = PR.flagOnly ? NUM.filter(g => isFlagged(g.id)) : NUM.filter(g => selected(g.t)); const g = pickWeighted(pool, PR.recent);
-  if (!g) { PR.cur = null; return; }
-  PR.recent.push(g.id); while (PR.recent.length > Math.min(6, Math.floor(pool.length / 2))) PR.recent.shift();
-  PR.cur = { g, p: g.gen() }; PR.done = false; PR.showSol = false; PR.val = ""; PR.result = null;
+/* ----- Problems (multi-part, homework style) ----- */
+const HWG = window.AAE_HW || [];
+const PR = { cur: null, vals: [], res: [], steps: new Set(), all: false, recent: [], flagOnly: false, focus: null };
+const hwPool = () => PR.flagOnly ? HWG.filter(g => isFlagged(g.id)) : HWG.filter(g => selected(g.t));
+function newProblem(same){
+  let g = same && PR.cur ? PR.cur.g : null;
+  if (!g) { const pool = hwPool(); g = pickWeighted(pool, PR.recent); if (!g) { PR.cur = null; return; }
+    PR.recent.push(g.id); while (PR.recent.length > Math.min(8, Math.floor(pool.length / 2))) PR.recent.shift(); }
+  if (PR.cur) openDeep.delete(PR.cur.g.id);
+  const p = g.gen(); PR.cur = { g, p }; PR.vals = p.parts.map(() => ""); PR.res = p.parts.map(() => null); PR.steps = new Set(); PR.all = false; PR.focus = 0;
 }
+const L = i => String.fromCharCode(97 + i);
 RENDER.problems = function(reset){
   const el = $("#v-problems");
-  if (reset || !PR.cur || (!PR.flagOnly && !selected(PR.cur.g.t))) newProblem();
-  const pool = PR.flagOnly ? NUM.filter(g => isFlagged(g.id)) : NUM.filter(g => selected(g.t));
+  if (reset || !PR.cur || (!PR.flagOnly && !selected(PR.cur.g.t))) newProblem(false);
+  const pool = hwPool();
   let body;
-  if (!S.sel.length) body = noTopics;
-  else if (!PR.cur) body = `<p class="empty">${PR.flagOnly ? "No flagged problem types yet." : "No problem types in these topics."}</p>`;
+  if (!S.sel.length && !PR.flagOnly) body = noTopics;
+  else if (!PR.cur) body = `<p class="empty">${PR.flagOnly ? "No flagged problems yet. Use Flag for follow-up on a problem to save it." : "No problems in these topics."}</p>`;
   else {
-    const { g, p } = PR.cur;
+    const { g, p } = PR.cur, nOk = PR.res.filter(r => r && r.ok).length;
     body = `<div class="card">
-      <div class="meta"><span>${esc(TN[g.t].name)}</span><span>${esc(g.title)}</span>${g.mr ? '<span class="mr">● On midterm review</span>' : ""}</div>
-      <div class="qtext">${p.q}</div>
-      <div class="ansrow"><label class="lbl" for="pr-in">Answer</label><input id="pr-in" inputmode="decimal" autocomplete="off" placeholder="${p.sig || Math.abs(p.ans) < 0.01 ? "e.g. 3.75e-7" : "number"}" value="${esc(PR.val)}" ${PR.done ? "disabled" : ""}><span class="unit">${esc(p.unit)}</span>
-        <button class="btn" id="pr-check" ${PR.done ? "disabled" : ""}>Check</button></div>
-      ${PR.result ? `<div class="fb ${PR.result.ok ? "ok" : "bad"}"><span class="verdict">${PR.result.ok ? "Correct" : (PR.result.nan ? "Enter a number" : "Not quite")}</span>${PR.result.nan ? "" : `<p class="ex">Expected ${fmtNum(p.ans, p.sig)} ${esc(p.unit)}${PR.result.ok ? "" : `; you entered ${fmtNum(PR.result.v, p.sig)}`}. Answers within 2% count.</p>`}</div>` : ""}
-      ${PR.showSol || PR.done ? `<div><span class="lbl">Worked solution</span><ol class="steps">${p.steps.map(s => `<li>${s}</li>`).join("")}</ol></div>` : ""}
+      <div class="meta"><span>${esc(TN[g.t].name)}</span><span>Based on ${esc(g.based)}</span>${g.mr ? '<span class="mr">● On midterm review</span>' : ""}</div>
+      <h3 class="ptitle">${esc(g.title)}</h3>
+      <div class="qtext">${p.setup}</div>
+      <ol class="parts">${p.parts.map((pt, i) => {
+        const r = PR.res[i], show = PR.all || PR.steps.has(i), locked = r && r.ok;
+        return `<li class="part ${r ? (r.ok ? "ok" : r.shown ? "" : "bad") : ""}">
+          <div class="ptop"><span class="plbl">(${L(i)})</span><span class="pq">${pt.q}</span></div>
+          <div class="ansrow"><input id="pa-${i}" data-pi="${i}" inputmode="decimal" autocomplete="off" aria-label="Answer to part ${L(i)}" placeholder="${pt.sig || (Math.abs(pt.ans) > 0 && Math.abs(pt.ans) < 0.01) ? "e.g. 3.75e-7" : "number"}" value="${esc(PR.vals[i])}" ${locked ? "disabled" : ""}>${pt.unit ? `<span class="unit">${esc(pt.unit)}</span>` : ""}
+            <button class="btn ghost sm" data-chk="${i}" ${locked ? "disabled" : ""}>Check</button>
+            ${r ? `<span class="pv ${r.ok ? "ok" : r.shown ? "" : "bad"}">${r.nan ? "Enter a number" : r.ok ? "Correct" : r.shown ? "Steps shown" : "Not quite, try again"}</span>` : ""}
+            <button class="linkbtn" data-stp="${i}">${show ? "Hide steps" : "Show steps"}</button></div>
+          ${show ? `<div class="psol"><span class="ans">Answer: <b>${fmtNum(pt.ans, pt.sig)}${pt.unit ? " " + esc(pt.unit) : ""}</b></span><ol class="steps">${pt.steps.map(x => `<li>${x}</li>`).join("")}</ol></div>` : ""}
+        </li>`; }).join("")}</ol>
       ${openDeep.has(g.id) ? numDeepHTML(g) : ""}
       ${noteHTML(g.id)}
-      <div class="foot"><div class="tools">${flagBtn(g.id, g.t, "num")}${moreBtn(g.id)}</div><div class="row"><button class="btn ghost" id="pr-sol" ${PR.showSol || PR.done ? "disabled" : ""}>Show solution</button><button class="btn" id="pr-new">New problem</button></div></div>
+      <div class="foot"><div class="tools">${flagBtn(g.id, g.t, "num")}${moreBtn(g.id)}</div>
+        <div class="row"><span class="kbd">${nOk}/${p.parts.length} parts correct</span><button class="btn ghost" id="pr-all">${PR.all ? "Hide full solution" : "Show full solution"}</button><button class="btn ghost" id="pr-same">New numbers</button><button class="btn" id="pr-new">Next problem</button></div></div>
     </div>`;
   }
-  el.innerHTML = `${sheet("Problems", `${pool.length} problem types · new numbers every time`)}
-    <div class="head"><h2>Numeric problems</h2><p>Homework-style calculations with random inputs. Uses μ⊕ = 398,600 km³/s², R⊕ = 6371 km and g = 9.81 m/s².</p></div>
+  const nParts = pool.reduce((a, g) => a + (g._n || (g._n = g.gen().parts.length)), 0);
+  el.innerHTML = `${sheet("Problems", `${pool.length} problems · ${nParts} parts · new numbers every time`)}
+    <div class="head"><h2>Homework-style problems</h2><p>Multi-part problems modeled on HW 1–4. Later parts build on earlier ones, as on the homework. Check each part (answers within 2% count) or open the steps for any part. Uses μ⊕ = 398,600 km³/s², R⊕ = 6371 km and g₀ = 9.81 m/s² unless the problem says otherwise.</p></div>
     <div class="row"><span class="lbl">Show</span><button class="chip" aria-pressed="${!PR.flagOnly}" data-pf="0">All selected topics</button><button class="chip" aria-pressed="${PR.flagOnly}" data-pf="1">Flagged only (${flagCounts().num})</button></div>${body}`;
   el.querySelectorAll("[data-pf]").forEach(b => b.onclick = () => { PR.flagOnly = b.dataset.pf === "1"; PR.recent = []; RENDER.problems(true); });
-  const inp = $("#pr-in");
-  if (inp) { inp.oninput = () => PR.val = inp.value; inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); checkProblem(); } }; }
-  const c = $("#pr-check"); if (c) c.onclick = checkProblem;
-  const s = $("#pr-sol"); if (s) s.onclick = () => { PR.showSol = true; if (!PR.done) { PR.done = true; rec(PR.cur.g.id, PR.cur.g.t, false); } RENDER.problems(false); };
-  const n = $("#pr-new"); if (n) n.onclick = () => { newProblem(); RENDER.problems(false); const i = $("#pr-in"); if (i) i.focus({ preventScroll: true }); };
+  el.querySelectorAll("input[data-pi]").forEach(inp => {
+    const i = +inp.dataset.pi;
+    inp.oninput = () => { PR.vals[i] = inp.value; };
+    inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); checkPart(i); } };
+  });
+  el.querySelectorAll("[data-chk]").forEach(b => b.onclick = () => checkPart(+b.dataset.chk));
+  el.querySelectorAll("[data-stp]").forEach(b => b.onclick = () => { const i = +b.dataset.stp; if (PR.steps.has(i)) PR.steps.delete(i); else { PR.steps.add(i); if (!PR.res[i]) { PR.res[i] = { ok: false, shown: true }; rec(PR.cur.g.id, PR.cur.g.t, false); } } keepScroll(() => RENDER.problems(false)); });
+  const all = $("#pr-all"); if (all) all.onclick = () => { PR.all = !PR.all; keepScroll(() => RENDER.problems(false)); };
+  const same = $("#pr-same"); if (same) same.onclick = () => { newProblem(true); RENDER.problems(false); focusPart(0); };
+  const nx = $("#pr-new"); if (nx) nx.onclick = () => { newProblem(false); RENDER.problems(false); window.scrollTo({ top: 0 }); focusPart(0); };
   typeset(el);
 };
-function checkProblem(){
-  const p = PR.cur.p, v = parseNum(PR.val);
-  if (!isFinite(v)) { PR.result = { nan: true, ok: false }; RENDER.problems(false); return; }
-  const ok = checkNum(p, v); PR.result = { ok, v }; PR.done = true; rec(PR.cur.g.id, PR.cur.g.t, ok); RENDER.problems(false);
-  const n = $("#pr-new"); if (n) n.focus({ preventScroll: true });
+function keepScroll(fn){ const y = window.scrollY; fn(); window.scrollTo(0, y); }
+function focusPart(i){ const n = document.getElementById("pa-" + i); if (n && !n.disabled) n.focus({ preventScroll: true }); }
+function checkPart(i){
+  const pt = PR.cur.p.parts[i], v = parseNum(PR.vals[i]);
+  if (!isFinite(v)) { PR.res[i] = { nan: true, ok: false }; keepScroll(() => RENDER.problems(false)); focusPart(i); return; }
+  const ok = checkNum(pt, v), first = !PR.res[i] || PR.res[i].nan;
+  PR.res[i] = { ok, v, shown: !!(PR.res[i] && PR.res[i].shown) && !ok };
+  if (first) rec(PR.cur.g.id, PR.cur.g.t, ok);
+  keepScroll(() => RENDER.problems(false));
+  if (ok) { const nxt = PR.cur.p.parts.findIndex((_, k) => k > i && !(PR.res[k] && PR.res[k].ok)); focusPart(nxt >= 0 ? nxt : i); } else focusPart(i);
 }
 
 /* ----- Mock exam ----- */

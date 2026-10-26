@@ -662,7 +662,7 @@ const CH = {
 "chem-106":["Solid fuel with a liquid oxidizer","Liquid fuel with a solid oxidizer","Solid first stage with a liquid upper stage","Monopropellant with a cold-gas pressurant"],
 "chem-107":[R`\(\sigma = \dfrac{Pr}{2t}\)`,R`\(\sigma = \dfrac{Pr}{t}\)`,R`\(\sigma = \dfrac{Pr}{4t}\)`,R`\(\sigma = \dfrac{2Pr}{t}\)`],
 "chem-108":["Hydrazine (N₂H₄)","Monomethylhydrazine (MMH)","Nitrogen tetroxide (N₂O₄)","Kerosene (RP-1)"],
-"ep-109":[R`Energy: the ion's potential energy \(eV_B\) becomes \(\tfrac12mv^2\)`,R`Momentum: \(mv\) equals \(eV_B\) times the transit time`,R`Lorentz force: \(q(\vec v\times\vec B)\) accelerates the ion`,R`Thermal: the ion temperature \(eV_B/k\) sets \(v\)`],
+"ep-109":[R`Energy: potential energy \(eV_B\) converts to kinetic \(\tfrac12mv^2\)`,R`Momentum: \(mv\) equals \(eV_B\) times the transit time`,R`Lorentz force: \(q(\vec v\times\vec B)\) accelerates the ion`,R`Thermal: the ion temperature \(eV_B/k\) sets \(v\)`],
 "ep-110":[R`\(F_T \propto \sqrt{V_B}\)`,R`\(F_T \propto V_B\)`,R`\(F_T \propto V_B^2\)`,R`\(F_T \propto 1/\sqrt{V_B}\)`],
 "ep-111":[R`\(\dot m_i/\dot m_p\)`,R`\(\dot m_p/\dot m_i\)`,R`\(\dot m_{loss}/\dot m_p\)`,R`\(P_B/P_E\)`],
 "ep-112":[R`\(J_B = \dfrac{q}{m}\dot m_p\eta_m\)`,R`\(J_B = \dfrac{q}{m}\dfrac{\dot m_p}{\eta_m}\)`,R`\(J_B = \dfrac{m}{q}\dot m_p\eta_m\)`,R`\(J_B = q\,\dot m_p\eta_m\)`],
@@ -835,7 +835,7 @@ eq("decay","env",0,"Orbit decay rate (circular)",R`\frac{da}{dt} = -\rho\,\beta\
  [[R`a`,"semi-major axis"],[R`\rho`,"local density"],[R`\mu`,"gravitational parameter"]],
  "Rate the orbit shrinks under drag, for a near-circular orbit.","Circular orbit, slowly varying a.",R`For the units to work, the factor multiplying \(\rho\) has to be \(C_DA/m = 1/\beta\). So a larger \(m/(C_DA)\) means slower decay.`);
 eq("aerotorque","env",0,"Aerodynamic disturbance torque",R`M_d = F_D\,(c_p - c_g)`,
- [[R`c_p`,"center of pressure"],[R`c_g`,"center of gravity"]],"Torque from drag acting off the CG (HW 1c).",R`Drag acts through \(c_p\).`,"Constant for Earth-oriented vehicles, varies for inertially oriented ones.");
+ [[R`c_p`,"center of pressure"],[R`c_g`,"center of gravity"]],R`Torque about the CG from drag acting at the center of pressure; the moment arm is \(c_p - c_g\) (HW 1c).`,R`Drag acts through \(c_p\), not \(c_g\).`,"Constant for Earth-oriented vehicles, varies for inertially oriented ones.");
 eq("solar","env",1,"Solar power and pressure",R`\text{Power} = I_sA_\perp,\quad P_s = \frac{I_s}{c},\quad F_s = P_sA_\perp(1+q),\quad I_s = I_{s\oplus}\!\left(\frac{r_{\oplus}}{r}\right)^{2}`,
  [[R`I_{s\oplus}`,"≈ 1358 W/m² at 1 AU"],[R`A_\perp`,"area facing the Sun"],[R`q`,"reflectivity: −1 transparent, 0 black, 1 mirror"],[R`c`,"speed of light"]],
  "Array power, solar radiation force and torque, scaling to other distances.","Flat surface normal to the Sun.",R`Inverse-square scaling with distance; \(P_s \approx 4.5\times10^{-6}\ \mathrm{N/m^2}\) at 1 AU.`);
